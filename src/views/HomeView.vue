@@ -1,6 +1,7 @@
 <template>
   <div>
     <HeaderPage/>
+    <ClientsPage/>
     <BasedPage/>
     <WebUrlPage/>
     <UsePage/>
@@ -13,6 +14,7 @@
 </template>
 <script>
 import HeaderPage from '../components/HeaderPage.vue';
+import ClientsPage from '../components/ClientsPage.vue';
 import BasedPage from '../components/BasedPage.vue';
 import WebUrlPage from '../components/WebUrlPage.vue';
 import UsePage from '../components/UsePage.vue';
@@ -26,6 +28,7 @@ export default {
   name: "Home",
   components: {
     HeaderPage,
+    ClientsPage,
     BasedPage,
     WebUrlPage,
     UsePage,
