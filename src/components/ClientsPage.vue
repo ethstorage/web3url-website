@@ -3,13 +3,13 @@
     <div class="clients">
       <p class="clients-title">Access web3:// URLs now</p>
       <div class="clients-url-bar-area">
-        <input id="clients-url-bar" type="text" placeholder="web3://..." />
+        <input id="clients-url-bar" type="text" placeholder="web3://..." value="web3://vitalikblog.eth" />
         <div class="clients-go-to-button" @click="goToUrl">
           Go to via gateway →
         </div>
       </div>
       <div class="clients-others">
-        Or use the <a href="https://github.com/nand2/evm-browser" target="_blank">EVM Browser</a> or <a href="https://github.com/web3-protocol/web3curl-js" target="_blank">web3curl app</a>
+        Or use the <a href="https://github.com/nand2/evm-browser" target="_blank">EVM Browser</a>, <a href="https://github.com/ComfyGummy/chrome-web3" target="_blank">Chrome extension</a> or <a href="https://github.com/web3-protocol/web3curl-js" target="_blank">web3curl app</a>
       </div>
 
     </div>
