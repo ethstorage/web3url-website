@@ -177,8 +177,12 @@ export default {
   },
   watch: {
     web3Url: function (newWeb3Url) {
+      // If the new value is a substring of web3://, put web3:// instead
+      if(newWeb3Url.length < "web3://".length && newWeb3Url == "web3://".substring(0, newWeb3Url.length)) {
+        this.web3Url = "web3://";
+      }
       // If the new value does not start with web3://, add it.
-      if(newWeb3Url.startsWith("web3://") == false) {
+      else if(newWeb3Url.startsWith("web3://") == false) {
         this.web3Url = "web3://" + newWeb3Url;
       }
       // If the user pasted an URL starting with web3:// while there was already the
