@@ -175,6 +175,19 @@ export default {
       }
     }
   },
+  watch: {
+    web3Url: function (newWeb3Url) {
+      // If the new value does not start with web3://, add it.
+      if(newWeb3Url.startsWith("web3://") == false) {
+        this.web3Url = "web3://" + newWeb3Url;
+      }
+      // If the user pasted an URL starting with web3:// while there was already the
+      // web3:// prefix, then remove the web3:// prefix.
+      else if(newWeb3Url.startsWith("web3://web3://")) {
+        this.web3Url = newWeb3Url.slice(7);
+      }
+    }
+  },
   created() {
     // Load the web3 protocol client
     this.chainList = getDefaultChainList()
