@@ -25,7 +25,7 @@ import BindingPage from '../components/BindingPage.vue';
 import FooterPage from "@/components/FooterPage.vue";
 
 export default {
-  name: "Home",
+  name: "HomePage",
   components: {
     HeaderPage,
     ClientsPage,

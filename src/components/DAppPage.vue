@@ -18,7 +18,7 @@
         <div class="dapp-item" @click="goW3mail">
           <img class="dapp-item-img" src="@/assets/w3mail.png"/>
           <div class="dapp-item-title">W3Mail</div>
-          <div class="dapp-item-message">Fully decentralized email service on Web3Q.</div>
+          <div class="dapp-item-message">Fully decentralized email service on EthStorage.</div>
           <div class="dapp-item-link">web3://w3-email.eth/</div>
         </div>
       </div>

@@ -9,7 +9,7 @@
         <img class="use-image1" src="@/assets/use1.png"/>
         <img class="use-image1" src="@/assets/use1-1.png"/>
         <div class="use1-text">
-          <a class="use1-text-a" href="https://docs.web3url.io/advanced-topics/resolve-modes-in-flatdirectory" target="_blank">
+          <a class="use1-text-a" href="https://docs.web3url.io/web3-url-structure/resolve-mode" target="_blank">
             More About Resolve Mode
           </a>
         </div>
