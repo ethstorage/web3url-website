@@ -1,8 +1,8 @@
 <template>
   <div>
     <HeaderPage/>
-    <ClientsPage/>
     <BasedPage/>
+    <ClientsPage/>
     <WebUrlPage/>
     <UsePage/>
     <GatewayPage/>

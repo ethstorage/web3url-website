@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="home" ref="targetSection">
     <div class="clients">
-      <p class="clients-title">Access web3:// URLs now</p>
+      <p class="clients-title">Surf The web3:// Experience. First Hand.</p>
       <div class="clients-url-bar-area">
         <div id="clients-url-bar-wrapper">
           <input id="clients-url-bar" type="text" placeholder="web3://..." v-model="web3Url" @keyup.enter="loadWeb3UrlInViewer" />
@@ -99,7 +99,7 @@
                     <span class="infos-value-subtitle">Method:</span> {{ parsedWeb3Url.parsedPath.methodName }}({{ parsedWeb3Url.parsedPath.methodArgs.map(arg => arg.type).join(', ') }})
                   </div>
                   <div>
-                    <span class="infos-value-subtitle">Args: </span> 
+                    <span class="infos-value-subtitle">Args: </span>
                     <code v-for="argValue in parsedWeb3Url.parsedPath.methodArgValues" :key="argValue" style="margin-right: 10px;">{{ argValue }}</code>
                   </div>
                 </div>
@@ -116,18 +116,14 @@
         </span>
         <iframe id="clients-embedded-viewer" src="" frameborder="0"></iframe>
       </div>
-      <div class="clients-others">
-        Or use the <a href="https://github.com/nand2/evm-browser" target="_blank">EVM Browser</a>, <a href="https://github.com/ComfyGummy/chrome-web3" target="_blank">Chrome extension</a> or <a href="https://github.com/web3-protocol/web3curl-js" target="_blank">web3curl app</a>
-      </div>
-
     </div>
   </div>
 </template>
 
 <script>
-
 import { Client } from 'web3protocol';
 import { getDefaultChainList } from 'web3protocol/chains';
+import { EventBus } from '@/utils/eventBus.js';
 
 export default {
   name: "ClientsPage",
@@ -203,7 +199,7 @@ export default {
      * It will first load the URL using web3protocol-js, display a few infos (smart contract
      * address, resolve mode, smart contract call) and then load the URL in an iframe.
      */
-    async loadWeb3UrlInViewer(){
+    async loadWeb3UrlInViewer() {
       // Reinitialize the parsed web3 url
       this.$set(this, 'parsedWeb3Url', {});
       // Reinitialize the viewer
@@ -230,7 +226,7 @@ export default {
         this.$set(this.parsedWeb3Url, 'contractAddress', contractAddress);
         this.$set(this.parsedWeb3Url, 'chainId', updatedChainId);
         this.$set(this.parsedWeb3Url, 'nameResolution', nameResolution);
-        
+
       }
       catch(err) {
         alert("web3curl: Hostname resolution: Error: " + err.message + "\n")
@@ -333,6 +329,18 @@ export default {
       //_self : 在当前窗口打开
       //window.location.href = url : 当前页面重定向
     },
+
+    handleScrollToSection(web3Url) {
+      this.$refs.targetSection.scrollIntoView({behavior: 'smooth'});
+      this.web3Url = web3Url;
+      this.loadWeb3UrlInViewer();
+    }
+  },
+  mounted() {
+    EventBus.$on('scrollToSection', this.handleScrollToSection);
+  },
+  beforeDestroy() {
+    EventBus.$off('scrollToSection', this.handleScrollToSection);
   },
 };
 </script>
@@ -340,11 +348,11 @@ export default {
 <style scoped>
 .home {
   width: 100%;
-  background: #F9F9F9;
+  background: #000;
 }
 
 .clients {
-  max-width: 1200px;
+  max-width: 1400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -353,12 +361,14 @@ export default {
 }
 
 .clients-title {
-  margin-top: 80px;
-  font-size: 36px;
-  font-weight: normal;
-  color: #000000;
-  line-height: 36px;
-  font-family: AlibabaPuHuiTiH;
+  margin-top: 170px;
+  color: #FFF;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: normal;
+  font-style: normal;
+  font-family: Satoshi;
 }
 
 .clients-url-bar-area {
@@ -369,7 +379,7 @@ export default {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: top;
+  align-items: start;
   gap: 10px;
 }
 

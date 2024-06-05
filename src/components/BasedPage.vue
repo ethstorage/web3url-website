@@ -1,125 +1,99 @@
 <template>
   <div class="home">
     <div class="based">
-      <p class="based-title">dApps and NFTs Accessible by web3://</p>
-      <div class="based-li based-l1">
-        <div class="based-image based-img1" @click.stop="goCyberbrokers">
-          <div class="eth-icon" @click.stop="goCyberbrokersEth" />
-          <span class="based-text">web3://cyberbrokers-meta.eth/renderBroker/5</span>
-        </div>
-        <div class="based-image based-img2" @click.stop="goEns">
-          <div class="eth-icon" @click.stop="goEnsEth"/>
-          <span class="based-text">web3://app-ens-domain.eth/</span>
-        </div>
-      </div>
-      <div class="based-li based-l2 based-pc">
-        <div class="based-image based-img3" @click.stop="goUni">
-          <div class="eth-icon" @click.stop="goUniEth" />
-          <span class="based-text">web3://app-uniswap-org.eth/</span>
-        </div>
-        <div class="based-image based-img4" @click.stop="goMoonBird">
-          <div class="eth-icon" @click.stop="goMoonBirdEth"/>
-          <span class="based-text">web3://moon-birds-xyz.eth/render/9880</span>
-        </div>
-        <div class="based-image based-img5" @click.stop="goVitalik">
-          <div class="eth-icon" @click.stop="goVitalikEth"/>
-          <span class="based-text">web3://vitalikblog.eth/</span>
-        </div>
-      </div>
-      <div class="based-li based-l3 based-pc">
-        <div class="based-image based-img6" @click.stop="goNous">
-          <div class="eth-icon" @click.stop="goNousEth"/>
-          <span class="based-text">web3://nouns-wtf.eth/render/505</span>
-        </div>
-        <div class="based-image based-img7" @click.stop="goArtBlock">
-          <div class="eth-icon" @click.stop="goArtBlockEth"/>
-          <span class="based-text">web3://art-blocks-io.eth/render/78/0</span>
-        </div>
-      </div>
+      <p class="based-title">Enabling Unstoppable Fully-Onchain Dapps</p>
+      <p class="based-title2">Your Unstoppable Dapps: Visit GitHub</p>
 
-      <!--   mobile ui   -->
-      <div class="based-li based-l2 based-phone">
-        <div class="based-image based-img3" @click.stop="goUni">
-          <div class="eth-icon" @click.stop="goUniEth" />
-          <span class="based-text">web3://app-uniswap-org.eth/</span>
+      <CardComponent class="dapp-card"
+                     bgColor="#e1efff"
+                     shadowColor="#9ac8ff"
+                     titleBgColor="#d2e6ff"
+                     title="Demo web3:// Dapps in Testnet">
+        <div class="card-layout">
+          <div class="card-item" @click="goW3box">
+            <img class="card-item-icon" src="@/assets/w3box.svg"/>
+            <div class="card-item-text">W3Box</div>
+          </div>
+          <div class="card-item" @click="goW3drive">
+            <img class="card-item-icon" src="@/assets/w3drive.svg"/>
+            <div class="card-item-text">W3Drive</div>
+          </div>
+          <div class="card-item" @click="goW3Blog">
+            <img class="card-item-icon" src="@/assets/w3blog.svg"/>
+            <div class="card-item-text">W3Blog</div>
+          </div>
+          <div class="card-item" @click="goQRobot">
+            <img class="card-item-icon" src="@/assets/qrobot.svg"/>
+            <div class="card-item-text">Web3<br/>QRobot</div>
+          </div>
+          <div class="card-item" @click="goW3mail">
+            <img class="card-item-icon" src="@/assets/w3mail.svg"/>
+            <div class="card-item-text">W3Mail</div>
+          </div>
         </div>
-        <div class="based-image based-img4" @click.stop="goNous">
-          <div class="eth-icon" @click.stop="goNousEth" />
-          <span class="based-text">web3://nouns-wtf.eth/render/505</span>
+      </CardComponent>
+
+      <CardComponent class="web3-card"
+                     bgColor="##F4F0FF"
+                     shadowColor="#d8ccff"
+                     titleBgColor="#d8ccff"
+                     title="web3://-Accessible Mainnet Resources">
+        <div class="card-layout">
+          <img class="card-item-img" src="@/assets/vblog.png" @click="goVitalik"/>
+          <img class="card-item-img" src="@/assets/moonbird.png" @click="goMoonBird"/>
+          <img class="card-item-img" src="@/assets/art.png" @click="goArtBlock"/>
+          <img class="card-item-img" src="@/assets/nous.png" @click="goNous"/>
+          <img class="card-item-img" src="@/assets/etherum-name-serve.png" @click="goEns"/>
+          <img class="card-item-img" src="@/assets/cyber-brokers.png" @click="goCyberbrokers"/>
         </div>
-      </div>
-      <div class="based-li based-l2 based-phone">
-        <div class="based-image based-img5" @click.stop="goMoonBird">
-          <div class="eth-icon" @click.stop="goMoonBirdEth" />
-          <span class="based-text">web3://moon-birds-xyz.eth/render/9880</span>
-        </div>
-        <div class="based-image based-img6" @click.stop="goVitalik">
-          <div class="eth-icon" @click.stop="goVitalikEth" />
-          <span class="based-text">web3://vitalikblog.eth/</span>
-        </div>
-      </div>
-      <div class="based-li based-l3 based-phone">
-        <div class="based-image based-img7" @click.stop="goArtBlock">
-          <div class="eth-icon" @click.stop="goArtBlockEth" />
-          <span class="based-text">web3://art-blocks-io.eth/render/78/0</span>
-        </div>
-      </div>
+      </CardComponent>
     </div>
   </div>
 </template>
 
 <script>
+import CardComponent from "./CardComponent";
+import { EventBus } from '@/utils/eventBus.js';
+
 export default {
   name: "BasedPage",
+  components: {
+    CardComponent
+  },
   methods: {
-    openUrl(url) {
-      window.open(url, "_blank");
-      //_blank : 在新窗口打开
-      //_self : 在当前窗口打开
-      //window.location.href = url : 当前页面重定向
+    goW3box(){
+      EventBus.$emit('scrollToSection', 'web3://w3-box.eth');
     },
-    goCyberbrokers(){
-      this.openUrl("https://cyberbrokers-meta.w3eth.io/renderBroker/5");
+    goW3drive(){
+      EventBus.$emit('scrollToSection', 'web3://w3-drive.eth');
     },
-    goEns(){
-      this.openUrl("https://app-ens-domain.w3eth.io/");
+    goW3Blog(){
+      EventBus.$emit('scrollToSection', 'web3://w3-blog.eth');
     },
-    goUni(){
-      this.openUrl("https://app-uniswap-org.w3eth.io/");
+    goQRobot(){
+      EventBus.$emit('scrollToSection', 'web3://w3-qrobot.eth');
     },
-    goMoonBird() {
-      this.openUrl("https://moon-birds-xyz.w3eth.io/render/9880");
-    },
-    goNous() {
-      this.openUrl("https://nouns-wtf.w3eth.io/render/505");
-    },
-    goVitalik(){
-      this.openUrl("https://vitalikblog.w3eth.io/");
-    },
-    goArtBlock(){
-      this.openUrl("https://art-blocks-io.w3eth.io/render/78/0");
+    goW3mail(){
+      EventBus.$emit('scrollToSection', 'web3://w3-email.eth');
     },
 
-    goCyberbrokersEth(){
-      this.openUrl("https://etherscan.io/address/0x8bb9a8baeec177ae55ac410c429cbbbbb9198cac#code");
+    goCyberbrokers(){
+      EventBus.$emit('scrollToSection', 'web3://cyberbrokers-meta.eth/renderBroker/5');
     },
-    goEnsEth(){
-      this.openUrl("https://explorer.galileo.web3q.io/address/0xAf9e71674b03fe08D6D8E6745637309378Dd8D8d/contracts");
+    goEns(){
+      EventBus.$emit('scrollToSection', 'web3://app-ens-domain.eth');
     },
-    goUniEth(){
-      this.openUrl("https://explorer.galileo.web3q.io/address/0xB9CDD66E719CB0F8B6f956b8C9a5abE8c9340380/contracts");
+    goNous() {
+      EventBus.$emit('scrollToSection', 'web3://nouns-wtf.eth/render/505');
     },
-    goMoonBirdEth() {
-      this.openUrl("https://etherscan.io/address/0x56B9308EFd014f10423B42B3aDE7eeCFe128B1BD#code");
+    goVitalik(){
+      EventBus.$emit('scrollToSection', 'web3://vitalikblog.eth');
     },
-    goNousEth() {
-      this.openUrl("https://etherscan.io/address/0xc4fa490829d7a8c6907d8e495ef089a45b64f68b#code");
+    goMoonBird() {
+      EventBus.$emit('scrollToSection', 'web3://moon-birds-xyz.eth/render/9880');
     },
-    goVitalikEth(){
-      this.openUrl("https://nova.arbiscan.io/address/0xe4ba0e245436b737468c206ab5c8f4950597ab7f#code");
-    },
-    goArtBlockEth(){
-      this.openUrl("https://etherscan.io/address/0x79a7aa92314fda49262649c6aef543fb0a652243#code");
+    goArtBlock(){
+      EventBus.$emit('scrollToSection', 'web3://art-blocks-io.eth/render/78/0');
     },
   },
 };
@@ -128,114 +102,103 @@ export default {
 <style scoped>
 .home {
   width: 100%;
-  background: #FFFFFF;
+  background: #EEF6FF;
 }
 
 .based {
-  max-width: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 1380px;
   margin: 0 auto;
 }
 
 .based-title {
-  margin-top: 80px;
-  font-size: 36px;
-  font-weight: normal;
-  color: #000000;
-  line-height: 36px;
-  font-family: AlibabaPuHuiTiH;
+  width: 100%;
+  margin-top: 5.5rem;
+  text-align: left;
+  color: #000;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: normal;
+  font-style: normal;
+  font-family: Satoshi;
+}
+.based-title2 {
+  width: 100%;
+  margin-top: 1rem;
+  text-align: left;
+  color: #000;
+  font-size: 1.75rem;
+  font-weight: 500;
+  font-style: normal;
+  line-height: normal;
+  font-family: Satoshi;
 }
 
-.based-li {
+
+.dapp-card {
+  width: 100%;
+  height: 310px;
+  margin-top: 6.83rem;
+}
+.web3-card {
+  width: 100%;
+  height: 21rem;
+  margin-top: 5.2rem;
+  margin-bottom: 64px;
+}
+
+.card-layout {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
 }
-.based-l1 {
-  margin-top: 80px;
-}
-.based-l2 {
-  margin-top: 20px;
-}
-.based-l3 {
-  margin-top: 20px;
-  margin-bottom: 120px;
-}
-.based-phone {
-  display: none;
-}
-
-.based-image {
-  background-repeat: no-repeat;
-  background-size: cover;
+.card-item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  padding: 0 20px;
+  flex-shrink: 0;
+  border-radius: 0.9375rem;
+  border: 1px solid #000;
+  background: #FFF;
   cursor: pointer;
 }
-.based-image:hover {
-  box-shadow: 6px 6px 10px rgba(0,0,0,0.5);
+.card-item-icon {
+  width: 35px;
 }
-.based-img1 {
-  height: 360px;
-  width: 750px;
-  background-image: url(../assets/based1.png);
-}
-.based-img2 {
-  height: 360px;
-  width: 430px;
-  background-image: url(../assets/based2.png);
-}
-.based-img3 {
-  height: 300px;
-  width: 300px;
-  background-image: url(../assets/based3.png);
-}
-.based-img4 {
-  height: 300px;
-  width: 370px;
-  background-image: url(../assets/moonbird.png);
-}
-.based-img5 {
-  height: 300px;
-  width: 490px;
-  background-image: url(../assets/vblog.png);
-}
-.based-img6 {
-  height: 340px;
-  width: 430px;
-  background-image: url(../assets/nous.png);
-}
-.based-img7 {
-  height: 340px;
-  width: 750px;
-  background-image: url(../assets/based5.png);
+.card-item-text {
+  text-align: left;
+  padding-left: 10px;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  font-style: normal;
+  font-family: Inter;
 }
 
-.based-text {
-  position: absolute;
-  bottom:0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  font-size: 16px;
-  color: #FFFFFF;
-  line-height: 50px;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.15);
-  font-family: AlibabaPuHuiTiM;
+.card-item-img {
+  cursor: pointer;
+  height: 114px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  background: lightgray 50% / cover no-repeat;
 }
 
-.eth-icon {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 0;
-  right: 0;
-  content: url(../assets/eth-ico.png);
+.card-item:hover,
+.card-item-img:hover {
+  border: 1px solid #cccccc;
+  box-shadow: 6px 6px 0px 0px #cccccca0;
 }
+
 @media screen and (max-width: 500px) {
   .home {
     width: 100%;
@@ -249,74 +212,6 @@ export default {
     margin-top: 35px;
     font-size: 20px;
     line-height: 20px;
-  }
-
-  .based-li {
-    width: 95%;
-  }
-  .based-l1 {
-    margin-top: 35px;
-  }
-  .based-l2 {
-    margin-top: 10px;
-  }
-  .based-l3 {
-    margin-top: 10px;
-    margin-bottom: 35px;
-  }
-  .based-pc {
-    display: none;
-  }
-  .based-phone {
-    display: inherit;
-  }
-
-  .based-img1 {
-    height: 130px;
-    width: 64%;
-    background-image: url(../assets/base-phone1.png);
-  }
-  .based-img2 {
-    height: 130px;
-    width: 34%;
-    background-image: url(../assets/base-phone2.png);
-  }
-  .based-img3 {
-    height: 130px;
-    width: 46%;
-    background-image: url(../assets/base-phone3.png);
-  }
-  .based-img4 {
-    height: 130px;
-    width: 52%;
-    background-image: url(../assets/nous-phone.png);
-  }
-  .based-img5 {
-    height: 130px;
-    width: 54%;
-    background-image: url(../assets/moonbird-phone.png);
-  }
-  .based-img6 {
-    height: 130px;
-    width: 44%;
-    background-image: url(../assets/vblog-phone.png);
-  }
-  .based-img7 {
-    height: 130px;
-    width: 100%;
-    background-image: url(../assets/base-phone5.png);
-  }
-
-  .based-text {
-    height: 25px;
-    font-size: 8px;
-    line-height: 25px;
-    font-family: AlibabaPuHuiTiR;
-  }
-
-  .eth-icon {
-    width: 28px;
-    height: 28px;
   }
 }
 </style>

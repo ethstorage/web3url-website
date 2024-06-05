@@ -7,16 +7,16 @@
       <img class="footer-img" src="@/assets/github.png">
     </a>
     <a href="https://twitter.com/EthStorage" target="_blank">
-      <img class="footer-img" src="@/assets/twiter.png">
+      <img class="footer-img" src="@/assets/twiter.svg">
     </a>
     <a href="https://ethstorage.medium.com/" target="_blank">
       <img class="footer-img" src="@/assets/medium.png">
     </a>
     <a href="https://t.me/ethstorage" target="_blank">
-      <img class="footer-img" src="@/assets/telegram.png">
+      <img class="footer-img" src="@/assets/telegram.svg">
     </a>
     <a href="https://discord.gg/xhCwaMp7ps" target="_blank">
-      <img class="footer-img" src="@/assets/discord.png">
+      <img class="footer-img" src="@/assets/discord.svg">
     </a>
   </div>
 </template>

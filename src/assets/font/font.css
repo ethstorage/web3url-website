@@ -1,27 +1,21 @@
 @font-face {
-    font-family: 'AlibabaPuHuiTiB';
-    src: url("AlibabaSans-Bold.otf");
+    font-family: Satoshi;
+    src: url("Satoshi-Medium.otf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'AlibabaPuHuiTiH';
-    src: url("AlibabaSans-Heavy.otf");
+    font-family: SatoshiBold;
+    src: url("Satoshi-Black.ttf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'AlibabaPuHuiTiR';
-    src: url("AlibabaSans-Regular.otf");
+    font-family: Inter;
+    src: url("Inter-Medium.ttf");
     font-weight: normal;
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'AlibabaPuHuiTiM';
-    src: url("AlibabaSans-Medium.otf");
-    font-weight: normal;
-    font-style: normal;
-}

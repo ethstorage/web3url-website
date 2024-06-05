@@ -1,0 +1,141 @@
+<template>
+  <div class="rectangleParent">
+    <div class="frameChild" :style="{ height: shadowHeight + 'px', backgroundColor: this.shadowColor}">
+      <img class="frameItem" alt="" src="@/assets/shadow.png"/>
+    </div>
+    <div ref="sourceDiv" class="frameInner" :style="{ backgroundColor: this.bgColor}">
+      <slot></slot>
+    </div>
+    <div ref="centerDiv" class="rectangleGroup">
+      <div class="rectangleDiv" :style="{ width: titleShadowWidth + 'px' }"/>
+      <div ref="sourceTitleDiv" class="web3AccessibleMainnetResWrapper" :style="{ backgroundColor: this.titleBgColor}">
+        <p class="web3AccessibleMainnetRes">
+          {{this.title}}
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      shadowHeight: 0,
+      titleShadowWidth: 0,
+    };
+  },
+  props: {
+    bgColor: {
+      type: String,
+      default: 'lightcoral'
+    },
+    shadowColor: {
+      type: String,
+      default: 'lightcoral'
+    },
+    titleBgColor: {
+      type: String,
+      default: 'lightcoral'
+    },
+    title: {
+      type: String,
+      default: ''
+    }
+  },
+  mounted() {
+    this.updateTargetSize();
+    window.addEventListener('resize', this.updateTargetSize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateTargetSize);
+  },
+  methods: {
+    updateTargetSize() {
+      this.$nextTick(() => {
+        if (this.$refs.sourceDiv) {
+          this.shadowHeight = this.$refs.sourceDiv.offsetHeight;
+        }
+
+        if (this.$refs.sourceTitleDiv) {
+          this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth;
+        }
+
+        const containerWidth = this.$el.offsetWidth;
+        const leftPosition = (containerWidth - this.titleShadowWidth) / 2;
+        this.$refs.centerDiv.style.left = `${leftPosition}px`;
+      });
+    },
+  },
+};
+</script>
+
+<style>
+.rectangleParent {
+  position: relative;
+  width: 100%;
+}
+
+.frameChild {
+  position: absolute;
+  top: 75px;
+  left: 28px;
+  border-radius: 20px;
+  background-color: #d8ccff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  width: 98%;
+}
+
+.frameItem {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.frameInner {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  border-radius: 20px;
+  background-color: #f4f0ff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  width: 97.5%;
+  padding: 65px 25px 30px;
+}
+
+.rectangleGroup {
+  position: absolute;
+  left: 0;
+  height: 77px;
+}
+.rectangleDiv {
+  position: absolute;
+  top: 12px;
+  left: 13px;
+  border-radius: 20px;
+  background-color: #000;
+  height: 65px;
+}
+.web3AccessibleMainnetResWrapper {
+  position: absolute;
+  background-color: #d8ccff;
+  border-radius: 20px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  height: 65px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.web3AccessibleMainnetRes {
+  margin: auto 25px;
+  color: #000;
+  font-size: 1.625rem;
+  font-weight: 500;
+  line-height: normal;
+  font-style: normal;
+  font-family: Inter;
+}
+</style>
