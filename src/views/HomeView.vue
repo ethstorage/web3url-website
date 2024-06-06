@@ -3,11 +3,12 @@
     <HeaderPage/>
     <BasedPage/>
     <ClientsPage/>
-    <WebUrlPage/>
     <UsePage/>
+    <WorkPage/>
+
+    <WebUrlPage/>
     <GatewayPage/>
     <BindingPage/>
-    <WorkPage/>
     <DAppPage/>
     <FooterPage/>
   </div>

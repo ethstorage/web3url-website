@@ -352,7 +352,7 @@ export default {
 }
 
 .clients {
-  max-width: 1400px;
+  max-width: 1280px;
   display: flex;
   flex-direction: column;
   justify-content: center;

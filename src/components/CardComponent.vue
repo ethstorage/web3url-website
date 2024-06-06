@@ -6,12 +6,13 @@
     <div ref="sourceDiv" class="frameInner" :style="{ backgroundColor: this.bgColor}">
       <slot></slot>
     </div>
-    <div ref="centerDiv" class="rectangleGroup">
+    <div v-if="this.showTitle" ref="centerDiv" class="rectangleGroup">
       <div class="rectangleDiv" :style="{ width: titleShadowWidth + 'px' }"/>
       <div ref="sourceTitleDiv" class="web3AccessibleMainnetResWrapper" :style="{ backgroundColor: this.titleBgColor}">
-        <p class="web3AccessibleMainnetRes">
+        <div class="web3AccessibleMainnetRes">
           {{this.title}}
-        </p>
+          <slot name="title"></slot>
+        </div>
       </div>
     </div>
   </div>
@@ -41,6 +42,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    showTitle: {
+      type: Boolean,
+      default: true,
     }
   },
   mounted() {
@@ -57,10 +62,11 @@ export default {
           this.shadowHeight = this.$refs.sourceDiv.offsetHeight;
         }
 
-        if (this.$refs.sourceTitleDiv) {
-          this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth;
+        this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth;
+        if (this.titleShadowWidth < 475) {
+          this.$refs.sourceTitleDiv.style.width = '475px';
+          this.titleShadowWidth = 475;
         }
-
         const containerWidth = this.$el.offsetWidth;
         const leftPosition = (containerWidth - this.titleShadowWidth) / 2;
         this.$refs.centerDiv.style.left = `${leftPosition}px`;
@@ -81,7 +87,6 @@ export default {
   top: 75px;
   left: 28px;
   border-radius: 20px;
-  background-color: #d8ccff;
   border: 2px solid #000;
   box-sizing: border-box;
   width: 98%;
@@ -97,11 +102,10 @@ export default {
   top: 42px;
   left: 0;
   border-radius: 20px;
-  background-color: #f4f0ff;
   border: 2px solid #000;
   box-sizing: border-box;
   width: 97.5%;
-  padding: 65px 25px 30px;
+  padding: 80px 50px 35px;
 }
 
 .rectangleGroup {
@@ -119,7 +123,6 @@ export default {
 }
 .web3AccessibleMainnetResWrapper {
   position: absolute;
-  background-color: #d8ccff;
   border-radius: 20px;
   border: 1px solid #000;
   box-sizing: border-box;

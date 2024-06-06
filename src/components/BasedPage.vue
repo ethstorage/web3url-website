@@ -34,7 +34,7 @@
       </CardComponent>
 
       <CardComponent class="web3-card"
-                     bgColor="##F4F0FF"
+                     bgColor="#F4F0FF"
                      shadowColor="#d8ccff"
                      titleBgColor="#d8ccff"
                      title="web3://-Accessible Mainnet Resources">
@@ -110,7 +110,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 1380px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -156,7 +156,6 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
 }
 .card-item {
   display: inline-flex;
