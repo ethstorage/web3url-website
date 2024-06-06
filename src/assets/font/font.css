@@ -6,6 +6,13 @@
 }
 
 @font-face {
+    font-family: SatoshiRegular;
+    src: url("Satoshi-Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: SatoshiBold;
     src: url("Satoshi-Black.ttf");
     font-weight: normal;

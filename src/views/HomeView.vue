@@ -5,11 +5,8 @@
     <ClientsPage/>
     <UsePage/>
     <WorkPage/>
-
     <WebUrlPage/>
-    <GatewayPage/>
-    <BindingPage/>
-    <DAppPage/>
+    <HowPage/>
     <FooterPage/>
   </div>
 </template>
@@ -20,10 +17,8 @@ import BasedPage from '../components/BasedPage.vue';
 import WebUrlPage from '../components/WebUrlPage.vue';
 import UsePage from '../components/UsePage.vue';
 import WorkPage from '../components/WorkPage.vue';
-import DAppPage from '../components/DAppPage.vue';
-import GatewayPage from '../components/GatewayPage.vue';
-import BindingPage from '../components/BindingPage.vue';
 import FooterPage from "@/components/FooterPage.vue";
+import HowPage from "@/components/HowPage.vue";
 
 export default {
   name: "HomePage",
@@ -34,9 +29,7 @@ export default {
     WebUrlPage,
     UsePage,
     WorkPage,
-    DAppPage,
-    GatewayPage,
-    BindingPage,
+    HowPage,
     FooterPage,
   },
 };
