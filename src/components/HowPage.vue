@@ -330,7 +330,7 @@ export default {
 
 .how-card-margin {
   margin-top: 122px;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
 }
 .web-context-left2 {
   background: #D8CCFF;

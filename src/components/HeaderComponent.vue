@@ -129,6 +129,7 @@ a.navbar-item.is-active,
 .navbar-link.is-active {
   color: rgba(255, 255, 255, 0.7) !important;
   background-color: transparent !important;
+  opacity: 0.7;
 }
 :focus {
   outline: -webkit-focus-ring-color auto 0px;

@@ -26,7 +26,6 @@
           </div>
         </div>
       </div>
-
       <div class="content-video">
         <video autoplay loop muted playsinline>
           <source :src="videoSrc" type="video/webm">
@@ -48,6 +47,17 @@ export default {
     return {
       videoSrc: require('@/assets/video.webm')
     };
+  },
+  methods: {
+    goEthDenver2024() {
+      window.open('https://www.youtube.com/watch?v=r9fXJ_QuR0Q', "_blank");
+    },
+    goEthDenver() {
+      window.open('https://www.youtube.com/watch?v=7ir-fSEisnc', "_blank");
+    },
+    goDevcon() {
+      window.open('https://www.youtube.com/watch?v=rRI-3RV_JHw', "_blank");
+    },
   }
 };
 </script>
@@ -56,11 +66,12 @@ export default {
 .home {
   background: #FFFFFF;
   width: 100%;
-  margin-bottom: 5rem;
+  padding-bottom: 80px;
 }
 
 .header {
-  margin: 0 0 0 9.5rem;
+  margin: 0 0 0 auto;
+  width: 1400px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -98,7 +109,7 @@ export default {
   font-weight: 400;
   line-height: 150%; /* 2.25rem */
   font-style: normal;
-  font-family: Satoshi;
+  font-family: SatoshiRegular;
 }
 
 
@@ -116,10 +127,10 @@ export default {
   font-weight: 400;
   line-height: normal;
   font-style: normal;
-  font-family: Satoshi;
+  font-family: SatoshiRegular;
 }
 .lb-text:hover {
-  filter: opacity(80%);
+  opacity: 0.6;
 }
 .lb-text-margin {
   margin-top: 15px;
@@ -127,7 +138,7 @@ export default {
 
 
 .content-video {
-  width: 62rem;
+  width: 65%;
 }
 video {
   width: 100%;

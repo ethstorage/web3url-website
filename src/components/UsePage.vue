@@ -112,6 +112,7 @@ export default {
 }
 .use-text-a:hover{
   background: transparent;
+  opacity: 0.6;
 }
 
 .rt-go {
