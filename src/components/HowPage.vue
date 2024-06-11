@@ -107,7 +107,7 @@
                   debugging URLs.
                 </div>
               </div>
-              <img class="web-lr-img web-lr-img-margin" alt="" src="@/assets/firefox.svg"/>
+              <img class="web-lr-img web-lr-img-margin" alt="" src="@/assets/web3curl.svg"/>
             </div>
           </div>
 

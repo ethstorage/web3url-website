@@ -15,11 +15,8 @@
         </div>
 
         <div class="header-list">
-          <div class="lb-text" @click.stop="goEthDenver2024">
-            Watch ETHDenver 2024 Talk <img class="rt-go" src="@/assets/arrow-right.svg"/>
-          </div>
           <div class="lb-text lb-text-margin" @click.stop="goEthDenver">
-            Watch ETHDenver 2023 Talk <img class="rt-go" src="@/assets/arrow-right.svg"/>
+            Watch ETHDenver Talk <img class="rt-go" src="@/assets/arrow-right.svg"/>
           </div>
           <div class="lb-text lb-text-margin" @click.stop="goDevcon">
             Watch Devcon Talk <img class="rt-go" src="@/assets/arrow-right.svg"/>
@@ -49,11 +46,8 @@ export default {
     };
   },
   methods: {
-    goEthDenver2024() {
-      window.open('https://www.youtube.com/watch?v=r9fXJ_QuR0Q', "_blank");
-    },
     goEthDenver() {
-      window.open('https://www.youtube.com/watch?v=7ir-fSEisnc', "_blank");
+      window.open('https://www.youtube.com/watch?v=h31q2ZMwHkQ', "_blank");
     },
     goDevcon() {
       window.open('https://www.youtube.com/watch?v=rRI-3RV_JHw', "_blank");
@@ -66,7 +60,7 @@ export default {
 .home {
   background: #FFFFFF;
   width: 100%;
-  padding-bottom: 80px;
+  padding-bottom: 66px;
 }
 
 .header {
@@ -102,7 +96,7 @@ export default {
 }
 
 .header-content {
-  margin-top:  8.6rem;
+  margin-top:  9rem;
   text-align: left;
   color: #070102;
   font-size: 1.5rem;
