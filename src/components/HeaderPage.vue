@@ -11,7 +11,7 @@
         </div>
 
         <div class="header-content">
-          Transforming Ethereum into the<br> Unstoppable Decentralized Web Server.
+          Transforming Ethereum into the<br class="br-phone"> Unstoppable Decentralized Web Server.
         </div>
 
         <div class="header-list">
@@ -140,15 +140,55 @@ video {
 }
 
 @media screen and (max-width: 500px) {
+  .home {
+    padding-bottom: 40px;
+  }
+
   .header {
+    margin: 0 auto;
     width: 100%;
+    flex-direction: column;
   }
 
   .content {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0;
-    margin-bottom: 15px;
+    width: 95%;
+  }
+
+  .header-title {
+    width: 100%;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .br-phone {
+    display: none;
+  }
+
+  .header-content {
+    width: 100%;
+    margin-top:  25px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: -0.36px;
+  }
+
+  .header-list {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .lb-text {
+    font-size: 12px;
+  }
+  .lb-text-margin {
+    margin-top: 8px;
+  }
+
+
+  .content-video {
+    width: 90%;
   }
 }
 </style>

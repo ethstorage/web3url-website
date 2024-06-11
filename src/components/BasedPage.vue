@@ -199,18 +199,48 @@ export default {
 }
 
 @media screen and (max-width: 500px) {
-  .home {
-    width: 100%;
-  }
-
   .based {
-    max-width: 100%;
+    max-width: 95%;
   }
 
   .based-title {
-    margin-top: 35px;
-    font-size: 20px;
-    line-height: 20px;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 40px;
+  }
+  .based-title2 {
+    font-size: 12px;
+    margin-top: 15px;
+  }
+
+
+  .dapp-card {
+    height: 138px;
+    margin-top: 24px;
+  }
+  .web3-card {
+    height: 125px;
+    margin-top: 24px;
+    margin-bottom: 40px;
+  }
+
+  .card-item {
+    height: 36px;
+    padding: 12px 5px;
+    border-radius: 12px;
+  }
+  .card-item-icon {
+    width: 12px;
+  }
+  .card-item-text {
+    padding-left: 5px;
+    font-size: 10px;
+  }
+
+  .card-item-img {
+    height: 36px;
+    border-radius: 8px;
+    border: 0.4px solid transparent;
   }
 }
 </style>

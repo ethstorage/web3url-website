@@ -8,10 +8,13 @@
                      shadowColor="#d8ccff"
                      titleBgColor="#d8ccff">
         <template v-slot:title>
-          web3:// (defined by ERC4804
-          <a class="use-text-a" href="https://eips.ethereum.org/EIPS/eip-4804" target="_blank">
-            <img class="rt-go" src="@/assets/arrow-right.svg"/>
-          </a>)
+          <div class="web3-card-title">
+            <span class="web3-card-title-item">web3:// (defined by ERC4804</span>
+            <a class="use-text-a" href="https://eips.ethereum.org/EIPS/eip-4804" target="_blank">
+              <img class="rt-go" src="@/assets/arrow-right.svg"/>
+            </a>
+            <span class="web3-card-title-item">)</span>
+          </div>
         </template>
         <div class="card-layout">
           <img class="use-image1" src="@/assets/auto-mode.svg"/>
@@ -29,7 +32,7 @@
                      shadowColor="#FFDCD5"
                      titleBgColor="#FFDCD4"
                      title="http://">
-        <img class="use-image1" src="@/assets/http.svg"/>
+        <img class="use-image3" src="@/assets/http.svg"/>
       </CardComponent>
     </div>
   </div>
@@ -115,9 +118,14 @@ export default {
   opacity: 0.6;
 }
 
+.use-image3 {
+  width: 100%;
+  height: 160px;
+}
+
 .rt-go {
   cursor: pointer;
-  padding: 3px 3px 5px 1px;
+  padding: 0 3px 5px 0;
 }
 @media screen and (max-width: 500px) {
   .home {
@@ -125,31 +133,63 @@ export default {
   }
 
   .use {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+    max-width: 95%;
   }
 
   .use-title {
-    margin-top: 35px;
-    font-size: 20px;
-    line-height: 20px;
+    margin-top: 40px;
+    font-size: 16px;
+  }
+
+  .web3-card {
+    margin-top: 24px;
+    height: 320px;
+  }
+  .http-card {
+    margin-top: 24px;
+    height: 185px;
+    margin-bottom: 40px;
   }
 
   .use-image1 {
-    width: 95%;
-    margin-top: 25px;
-    margin-left: 0;
+    height: 88px;
+    content: url("@/assets/auto-mode-phone.png");
+    object-fit: fill;
+  }
+  .use-image2 {
+    margin-top: 15px;
+    height: 88px;
+    content: url("@/assets/manual-mode-phone.png");
+    object-fit: fill;
+  }
+  .use-text-layout {
+    margin: 8px 0 0;
+    padding-right: 8px;
+  }
+  .use-text {
+    font-size: 10px;
   }
 
-  .use-image2 {
-    width: 95%;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    margin-left: 0;
+  .use-image3 {
+    height: 88px;
+    content: url("@/assets/http-phone.png");
+  }
+
+  .web3-card-title {
+    display: block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    height: 20px;
+  }
+  .web3-card-title-item {
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+  }
+
+  .rt-go {
+    padding: 2px 3px 0 0;
   }
 }
 </style>

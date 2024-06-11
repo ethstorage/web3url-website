@@ -56,6 +56,9 @@ export default {
     window.removeEventListener('resize', this.updateTargetSize);
   },
   methods: {
+    isMobile() {
+      return window.matchMedia("(max-width: 500px)").matches;
+    },
     updateTargetSize() {
       this.$nextTick(() => {
         if (this.$refs.sourceDiv) {
@@ -63,7 +66,7 @@ export default {
         }
 
         this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth;
-        if (this.titleShadowWidth < 475) {
+        if (this.titleShadowWidth < 475 && !this.isMobile()) {
           this.$refs.sourceTitleDiv.style.width = '475px';
           this.titleShadowWidth = 475;
         }
@@ -140,5 +143,39 @@ export default {
   line-height: normal;
   font-style: normal;
   font-family: Inter;
+}
+
+@media screen and (max-width: 500px) {
+  .frameChild {
+    top: 28px;
+    left: 6px;
+    border-radius: 12px;
+    border: 1px solid #000;
+  }
+
+  .frameInner {
+    top: 18px;
+    border-radius: 12px;
+    border: 1px solid #000;
+    padding: 32px 8px 24px;
+  }
+
+  .rectangleGroup {
+    height: 36px;
+  }
+  .rectangleDiv {
+    top: 4px;
+    left: 4px;
+    height: 28px;
+    border-radius: 12px;
+  }
+  .web3AccessibleMainnetResWrapper {
+    height: 28px;
+    border-radius: 12px;
+  }
+  .web3AccessibleMainnetRes {
+    font-size: 10px;
+  }
+
 }
 </style>
