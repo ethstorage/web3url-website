@@ -2,7 +2,9 @@
   <div class="home">
     <div class="based">
       <p class="based-title">Enabling Unstoppable Fully-Onchain Dapps</p>
-      <p class="based-title2">Your Unstoppable Dapps: Visit GitHub</p>
+      <div class="based-title2">Your Unstoppable Dapps:
+        <span class="go-btn-link" @click="goWeb3">Visit GitHub<img src="@/assets/arrow-right.svg" class="go-btn"/></span>
+      </div>
 
       <CardComponent class="dapp-card"
                      bgColor="#e1efff"
@@ -95,6 +97,9 @@ export default {
     goArtBlock(){
       EventBus.$emit('scrollToSection', 'web3://art-blocks-io.eth/render/78/0');
     },
+    goWeb3() {
+      window.open('https://github.com/ethstorage/awesome-web3', "_blank");
+    }
   },
 };
 </script>
@@ -198,6 +203,15 @@ export default {
   box-shadow: 6px 6px 0px 0px #cccccca0;
 }
 
+.go-btn-link {
+  cursor: pointer;
+}
+.go-btn-link:hover {
+  opacity: 0.6;
+}
+.go-btn {
+  padding: 3px 4px 5px;
+}
 @media screen and (max-width: 500px) {
   .based {
     max-width: 95%;
@@ -212,7 +226,6 @@ export default {
     font-size: 12px;
     margin-top: 15px;
   }
-
 
   .dapp-card {
     height: 138px;
@@ -241,6 +254,11 @@ export default {
     height: 36px;
     border-radius: 8px;
     border: 0.4px solid transparent;
+  }
+
+  .go-btn {
+    width: 16px;
+    padding: 0;
   }
 }
 </style>

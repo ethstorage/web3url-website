@@ -60,19 +60,27 @@ export default {
       return window.matchMedia("(max-width: 500px)").matches;
     },
     updateTargetSize() {
+      if (this.$refs.sourceTitleDiv) {
+        this.$refs.sourceTitleDiv.style.width = '';
+      }
       this.$nextTick(() => {
         if (this.$refs.sourceDiv) {
           this.shadowHeight = this.$refs.sourceDiv.offsetHeight;
         }
 
-        this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth;
-        if (this.titleShadowWidth < 475 && !this.isMobile()) {
-          this.$refs.sourceTitleDiv.style.width = '475px';
-          this.titleShadowWidth = 475;
+        if (this.$refs.sourceTitleDiv) {
+          this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth;
+          if (this.titleShadowWidth < 475 && !this.isMobile()) {
+            this.titleShadowWidth = 475;
+            this.$refs.sourceTitleDiv.style.width = '475px';
+          }
         }
-        const containerWidth = this.$el.offsetWidth;
-        const leftPosition = (containerWidth - this.titleShadowWidth) / 2;
-        this.$refs.centerDiv.style.left = `${leftPosition}px`;
+
+        if (this.$refs.centerDiv) {
+          const containerWidth = this.$el.offsetWidth;
+          const leftPosition = (containerWidth - this.titleShadowWidth) / 2;
+          this.$refs.centerDiv.style.left = `${leftPosition}px`;
+        }
       });
     },
   },

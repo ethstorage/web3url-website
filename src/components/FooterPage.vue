@@ -4,7 +4,7 @@
       <img class="footer-font" src="@/assets/footer-left.png" />
       <div class="subscribe-div">
         <div class="subscribe-title">Build Your Dapps with web3://</div>
-        <div class="subscribe-msg" @click="goDocs">Learn More <img src="@/assets/arrow-white.svg"/></div>
+        <div class="subscribe-msg" @click="goDocs">Learn More <img src="@/assets/arrow-white.svg" class="go-btn"/></div>
       </div>
       <div class="footer-empty"/>
     </div>
@@ -129,17 +129,46 @@ export default {
 }
 
 @media screen and (max-width: 500px) {
-  .footer {
-    padding-top: 0;
-    padding-bottom: 0;
-    height: 50px;
+  .footer-div {
+    background-size: 140px;
   }
-  .footer-img {
-    width: 25px;
-    height: 25px;
+
+  .footer-font {
+    width: 90px;
   }
-  .footer-link {
-    font-size: 14px;
+
+  .subscribe-div {
+    margin-top: 16px;
+  }
+  .subscribe-title  {
+    font-size: 16px;
+  }
+  .subscribe-msg {
+    margin-top: 16px;
+    font-size: 10px;
+  }
+
+  .footer-empty {
+    width: 90px;
+    height: 90px;
+  }
+
+  .footer-b {
+    padding-bottom: 16px;
+    width: 90%;
+    margin: -30px auto 0;
+  }
+
+  .logo-icon {
+    width: 50px;
+  }
+  .community-icon {
+    margin: auto 8px;
+    width: 14px;
+  }
+
+  .go-btn {
+    width: 12px;
   }
 }
 </style>
