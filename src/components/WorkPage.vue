@@ -68,9 +68,18 @@ export default {
   }
 
   .work-title {
-    margin-top: 35px;
-    font-size: 20px;
-    line-height: 20px;
+    margin-top: 40px;
+    font-size: 16px;
+  }
+
+  .work-card {
+    width: 100%;
+    margin-top: 5px;
+    height: 235px;
+    margin-bottom: 40px;
+  }
+  .work-image {
+    height: 140px;
   }
 }
 </style>

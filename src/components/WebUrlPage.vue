@@ -3,7 +3,7 @@
     <div class="web-url">
       <p class="web-url-title">Core Features of web3://</p>
       <div class="web-context">
-        <img src="@/assets/core-list.svg"/>
+        <img src="@/assets/core-list.svg" class="web-context-img"/>
         <div class="web-context-item">
           <span class="web-context-title">Decentralized DNS</span>
           <span class="web-context-message">Trustless decentralized names can be issued as tokens on the blockchain. Registration is done through smart contracts, and name ownership is secured by the blockchain.</span>
@@ -94,36 +94,41 @@
   }
 
   .web-url {
-    max-width: 100%;
+    max-width: 95%;
   }
 
   .web-url-title {
-    margin-top: 35px;
-    font-size: 20px;
-    line-height: 20px;
+    margin-top: 40px;
+    font-size: 16px;
   }
 
   .web-context {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    margin-top: 5px;
+  }
+  .web-context-img {
+    width: 44%;
+  }
+
+  .web-context-item {
+    max-width: 53%;
+    margin-left: auto;
     margin-top: 0;
   }
-  .web-context-item {
-    max-width: 88%;
-    margin-top: 35px;
-  }
   .web-context-title {
-    margin-top: 15px;
-    font-size: 16px;
-    line-height: 16px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: normal;
   }
   .web-context-message {
-    margin-top: 10px;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
+    font-size: 12px;
+    line-height: normal;
+  }
+
+  .work-img {
+    width: 100%;
+    margin-top: -19%;
+    margin-bottom: 40px;
   }
 }
 </style>

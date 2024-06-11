@@ -6,19 +6,23 @@
       <div class="how-card">
         <div class="web-context">
           <div class="web-context-left1">
-            <div class="web-left-title">Access web3:// Through<br/>HTTP Gateways</div>
-            <div class="web-left-title2">Two types of gateways:</div>
-            <div class="web-left-msg">
-              1. Multi-Blockchain Gateway: w3link.io <img @click="onReadMore" class="rt-go" src="@/assets/arrow.svg"/>
+            <div class="web-left-title">Access web3:// Through<br class="br-phone"/>HTTP Gateways</div>
+            <div class="web-left-msg-layout">
+              <div class="web-left-msg-item">
+                <div class="web-left-title2">Two types of gateways:</div>
+                <div class="web-left-msg">
+                  1. Multi-Blockchain Gateway: w3link.io <img @click="onReadMore" class="rt-go" src="@/assets/arrow.svg"/>
+                </div>
+                <div class="web-left-msg">
+                  2.Ethereum-Only Gateway: w3eth.io <img @click="onW3link" class="rt-go" src="@/assets/arrow.svg"/>
+                </div>
+              </div>
+              <div class="web-left-msg-item">
+                <div class="web-left-title2">Example:</div>
+                <div class="web-left-link">web3://vitalikblog.eth</div>
+                <div class="web-left-link">https://vitalik.eth.eth.w3link.io/</div>
+              </div>
             </div>
-            <div class="web-left-msg">
-              2.Ethereum-Only Gateway: w3eth.io <img @click="onW3link" class="rt-go" src="@/assets/arrow.svg"/>
-            </div>
-
-            <div class="web-left-title2">Example:</div>
-            <div class="web-left-link">web3://vitalikblog.eth</div>
-            <div class="web-left-link">https://vitalik.eth.eth.w3link.io/</div>
-
             <div class="web-left-msg web-margin">
               Wanna contribute to the decentralization and run your gateway? Apply a grant for support!
             </div>
@@ -46,8 +50,7 @@
                 <div class="web-context-layout web-context-layout-margin1">
                   <img class="web-right-img" alt="" src="@/assets/other.svg"/>
                   <div class="web-right-msg">
-                    <p>w3link.io</p>
-                    <p>+w3eth.io</p>
+                    w3link.io<br class="br-phone"/>+w3eth.io
                   </div>
                 </div>
                 <div class="web-context-layout web-context-layout-margin">
@@ -68,7 +71,7 @@
       </div>
 
       <div class="how-card how-card-margin">
-        <div class="web-context">
+        <div class="web-context web-context-phone">
           <div class="web-context-right1 web-context-left2">
             <div class="web-context-layout">
               <div class="web-right-item">
@@ -112,7 +115,7 @@
           </div>
 
           <div class="web-context-left1 web-context-right2">
-            <div class="web-rl-title">Experience Native web3://<br/>Clients</div>
+            <div class="web-rl-title">Experience Native web3:// <br class="br-phone"/>Clients</div>
             <div class="web-rl-msg">
               Multiple web3:// clients can accept native web3:// URLs to retrieve the data and access the full-decentralized world.
             </div>
@@ -153,6 +156,7 @@ export default {
 
 <style scoped>
 .home {
+  max-width: 100%;
   background: #D8CCFF;
 }
 
@@ -201,7 +205,6 @@ export default {
 }
 .web-left-title {
   margin-top: 50px;
-  margin-bottom: 8px;
   text-align: left;
   color: #FF8C5B;
   font-size: 32px;
@@ -209,6 +212,15 @@ export default {
   font-weight: 700;
   line-height: 48px; /* 150% */
   font-family: Satoshi;
+}
+
+.web-left-msg-layout,
+.web-left-msg-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .web-left-title2 {
   margin-top: 28px;
@@ -241,6 +253,7 @@ export default {
   opacity: 0.8;
   font-family: SatoshiRegular;
 }
+
 .web-margin {
   margin-top: 40px;
   margin-bottom: 85px;
@@ -396,41 +409,155 @@ export default {
 }
 
 @media screen and (max-width: 500px) {
-  .home {
-    width: 100%;
+  .how-web3-title {
+    margin-top: 40px;
+    font-size: 16px;
   }
 
-  .web-url {
-    max-width: 100%;
-  }
-
-  .web-url-title {
-    margin-top: 35px;
-    font-size: 20px;
-    line-height: 20px;
+  .how-card {
+    margin-top: 24px;
   }
 
   .web-context {
+    width: 90%;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+  }
+
+  .web-context-left1 {
     width: 100%;
-    margin-top: 0;
+    padding-right: 0;
   }
-  .web-context-item {
-    max-width: 88%;
-    margin-top: 35px;
+  .web-left-title {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: normal;
   }
-  .web-context-title {
-    margin-top: 15px;
-    font-size: 16px;
+
+  .web-left-msg-layout {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .web-left-msg-item {
+    width: auto;
+  }
+  .web-left-title2 {
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .web-left-msg {
+    font-size: 10px;
+  }
+  .web-left-link {
+    margin-top: 8px;
+    font-size: 10px;
+    text-align: left;
+  }
+  .web-margin {
+    margin-top: 16px;
+    margin-bottom: 0;
+  }
+
+  .web-context-right1 {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 25px;
+    margin-bottom: -30px;
+    padding: 16px 24px;
+  }
+  .web-context-layout {
+    width: 100%;
+  }
+  .web-right-title {
+    font-size: 12px;
+    line-height: normal;
+  }
+  .web-right-img {
+    height: 20px;
+  }
+  .web-right-msg {
+    font-size: 10px;
     line-height: 16px;
+    min-width: 85px;
+    margin-left: 8px;
   }
-  .web-context-message {
-    margin-top: 10px;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
+  .web-context-layout-margin1 {
+    margin-top: 16px;
+  }
+  .web-context-layout-margin {
+    margin-top: 16px;
+  }
+  .br-phone {
+    display: none;
+  }
+
+  .web-right-text-layout {
+    margin-top: 16px;
+    margin-bottom: 10px;
+  }
+  .web-right-text {
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+
+  .rt-go {
+    padding: 3px 3px 0 1px;
+  }
+
+
+  .how-card-margin {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
+  .web-context-phone {
+    flex-direction: column-reverse;
+  }
+  .web-context-left2 {
+    padding: 24px;
+  }
+  .web-lr-title {
+    font-size: 12px;
+    line-height: normal;
+  }
+  .web-lr-msg {
+    margin-top: 8px;
+    font-size: 10px;
+    line-height: 100%; /* 10px */
+    letter-spacing: -0.1px;
+  }
+  .web-lr-img {
+    width: 48px;
+  }
+  .web-lr-margin {
+    margin-top: 18px;
+    margin-bottom: 18px;
+  }
+  .web-lr-img-margin {
+    margin-left: 16px;
+  }
+  .web-lr-img-margin2 {
+    margin-right: 16px;
+  }
+
+
+  .web-context-right2 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .web-rl-title {
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: normal;
+  }
+  .web-rl-msg {
+    margin-top: 8px;
+    font-size: 10px;
+    line-height: 125%;
   }
 }
 </style>
