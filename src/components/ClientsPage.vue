@@ -2,183 +2,123 @@
   <div class="home" ref="targetSection">
     <div class="clients">
       <p class="clients-title">Surf The web3:// Experience. First Hand.</p>
-      <div class="clients-url-bar-area">
-        <div id="clients-url-bar-wrapper">
-          <input id="clients-url-bar" type="text" placeholder="web3://..." v-model="web3Url" @keyup.enter="loadWeb3UrlInViewer" />
-
-          <div id="clients-url-bar-examples" v-if="showWeb3UrlExamples">
-            <div class="clients-url-bar-example" v-for="example in web3UrlExamples" :key="example.url" @click="web3Url = example.url; showWeb3UrlExamples = false; loadWeb3UrlInViewer()">
-              <div class="clients-url-bar-example-title">{{ example.title }}</div>
-              <div class="clients-url-bar-example-url">{{ example.url }}</div>
-            </div>
-          </div>
-          <a id="clients-url-bar-examples-show-button" v-else @click="showWeb3UrlExamples = true">
-            Try other web3:// URL examples
-          </a>
+      <div class="clients-tab">
+        <div class="clients-tab-btn" :class="{'active': inputType === 1}" @click="onSwitchAuto">
+          See What web3:// Can Do
         </div>
-        <div class="clients-go-to-button" @click="loadWeb3UrlInViewer">
-          Go to →
+        <div class="clients-tab-btn btn-margin" :class="{'active': inputType === 2}" @click="onSwitchInput">
+          Enter Your web3://
         </div>
       </div>
-      <div id="clients-embedded-viewer-area">
-        <div id="clients-embedded-viewer-url-infos">
-          <div>
-            <div class="infos-title">Smart Contract</div>
-            <div class="infos-value">
-              <div v-if="parsedWeb3Url.contractAddress == null" class="loading-spinner"></div>
-              <div v-else>
-                <div>
-                  <a v-if="parsedWeb3Url.chainId in chainExplorerUrls" :href="chainExplorerUrls[parsedWeb3Url.chainId].replace('<address>', parsedWeb3Url.contractAddress)" target="_blank">
-                    {{ parsedWeb3Url.contractAddress }}
-                  </a>
-                  <span v-else>
-                    {{ parsedWeb3Url.contractAddress }}
-                  </span>
-                  @
-                  <span v-if="chainList.find(chain => chain.id == parsedWeb3Url.chainId)">
-                    {{ chainList.find(chain => chain.id == parsedWeb3Url.chainId).name }} 
-                    <span v-if="parsedWeb3Url.chainId != 1">
-                      (id {{ parsedWeb3Url.chainId }})
-                    </span>
-                  </span>
-                  <span v-else>
-                    chain id {{ parsedWeb3Url.chainId }}
-                  </span>
 
-                </div>
-                <div style="font-size: 14px">
-                  <span class="infos-value-subtitle">Domain name resolution: </span>
-                  {{ parsedWeb3Url.nameResolution.resolver ? parsedWeb3Url.nameResolution.resolver.toUpperCase() : "(none)" }}
-                  <span v-if="parsedWeb3Url.nameResolution.resolver">
-                    @
-                    <span v-if="chainList.find(chain => chain.id == parsedWeb3Url.nameResolution.resolverChainId)">
-                      {{ chainList.find(chain => chain.id == parsedWeb3Url.nameResolution.resolverChainId).name }} 
-                      <span v-if="parsedWeb3Url.nameResolution.resolverChainId != 1">
-                        (id {{ parsedWeb3Url.nameResolution.resolverChainId }})
-                      </span>
-                    </span>
-                    <span v-else>
-                      chain id {{ parsedWeb3Url.nameResolution.resolverChainId }}
-                    </span>
-
-                    <span v-if="parsedWeb3Url.nameResolution.resolutionType == 'contentContractTxt'">
-                      (via contentcontract TXT field<sup><a href="https://docs.web3url.io/web3-url-structure/domain-name" target="_blank">?</a></sup> )
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="infos-title">Resolve mode <sup><a href="https://docs.web3url.io/web3-url-structure/resolve-mode" target="_blank">?</a></sup></div>
-            <div class="infos-value">
-              <div v-if="parsedWeb3Url.mode == null" class="loading-spinner"></div>
-              <div v-else>
-                <a v-if="parsedWeb3Url.mode == 'manual'" href="https://docs.web3url.io/web3-url-structure/resolve-mode/mode-manual" target="_blank">
-                  Manual
-                </a>
-                <a v-else-if="parsedWeb3Url.mode == 'auto'" href="https://docs.web3url.io/web3-url-structure/resolve-mode/mode-auto" target="_blank">
-                  Auto
-                </a>
-                <a v-else-if="parsedWeb3Url.mode == 'resourceRequest'" href="https://docs.web3url.io/web3-url-structure/resolve-mode/mode-resource-request" target="_blank">
-                  Resource request
-                </a>
-                <span v-else>
-                  {{ parsedWeb3Url.mode }}
-                </span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="infos-title">Smart Contract call</div>
-            <div class="infos-value">
-              <div v-if="parsedWeb3Url.parsedPath == null" class="loading-spinner"></div>
-              <div v-else>
-                <div v-if="parsedWeb3Url.parsedPath.contractCallMode == 'method'">
-                  <div>
-                    <span class="infos-value-subtitle">Method:</span> {{ parsedWeb3Url.parsedPath.methodName }}({{ parsedWeb3Url.parsedPath.methodArgs.map(arg => arg.type).join(', ') }})
-                  </div>
-                  <div>
-                    <span class="infos-value-subtitle">Args: </span>
-                    <code v-for="argValue in parsedWeb3Url.parsedPath.methodArgValues" :key="argValue" style="margin-right: 10px;">{{ argValue }}</code>
-                  </div>
-                </div>
-                <div v-else-if="parsedWeb3Url.parsedPath.contractCallMode == 'calldata'">
-                  <span class="infos-value-subtitle">Calldata:</span> {{ parsedWeb3Url.parsedPath.calldata }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <span id="clients-embedded-viewer-notice" style="font-size: 12px; color: #616161">
-            Embedded web3:// gateway preview, <a href="" @click.prevent="loadWeb3UrlInNewTab">click here</a> to load the gateway in a separate tab.
-        </span>
-        <iframe id="clients-embedded-viewer" src="" frameborder="0"></iframe>
+      <div v-if="inputType === 1" class="web3-auto-layout">
+        <el-select v-model="web3Url" placeholder="web://"
+                   @change="openFrame"
+                   :popper-append-to-body="false">
+          <el-option
+              v-for="item in web3UrlExamples"
+              :key="item.url"
+              :label="item.url"
+              :value="item.url">
+            <span style="float: left">{{ item.title }}</span>
+            <span style="float: right" class="web3-option-right">{{ item.url }}</span>
+          </el-option>
+        </el-select>
+        <div class="dot" />
+        <div class="dot1" />
+        <div class="dot2" />
+        <div class="dot3" />
+        <img class="web3-go-to" @click="openFrame" alt="go"/>
       </div>
+      <div v-else class="web3-auto-layout">
+        <input class="clients-input" type="text" placeholder="web3://..." v-model="web3Url"
+               @keyup.enter="openFrame"/>
+        <div class="dot" />
+        <div class="dot1" />
+        <div class="dot2" />
+        <div class="dot3" />
+        <img class="web3-go-to" @click="openFrame" alt="go"/>
+      </div>
+
+      <b-modal v-model="isOpenFrame" :can-cancel="false">
+        <WebPage :web3Url="web3Url"/>
+      </b-modal>
     </div>
   </div>
 </template>
 
 <script>
-import { Client } from 'web3protocol';
-import { getDefaultChainList } from 'web3protocol/chains';
 import { EventBus } from '@/utils/eventBus.js';
+import WebPage from "@/components/WebPage";
 
 export default {
   name: "ClientsPage",
   data() {
     return {
+      web3Url: "web3://vitalikblog.eth",
+      isOpenFrame: false,
+      inputType: 1,
       web3UrlExamples: [
         {
-          title: "Vitalik's blog on Arbitrum Nova",
+          title: "W3Box",
+          url: "web3://w3-box.eth"
+        },
+        {
+          title: "W3Drive",
+          url: "web3://w3-drive.eth"
+        },
+        {
+          title: "W3Blog",
+          url: "web3://w3-blog.eth"
+        },
+        {
+          title: "Web3 QRobot",
+          url: "web3://w3-qrobot.eth"
+        },
+        {
+          title: "W3Mail",
+          url: "web3://w3-email.eth"
+        },
+
+        {
+          title: "Vitalik's blog",
           url: "web3://vitalikblog.eth"
         },
         {
-          title: "Display a Terraform (on-chain NFT)",
-          url: "web3://0x4e1f41613c9084fdb9e34e11fae9412427480e56/tokenHTML/9352"
+          title: "MoonBird",
+          url: "web3://moon-birds-xyz.eth/render/9880"
         },
         {
-          title: "USDC balance of nemorino.eth",
-          url: "web3://usdc.eth/balanceOf/nemorino.eth?returns=(uint256)"
+          title: "Art Blocks",
+          url: "web3://art-blocks-io.eth/render/78/0"
         },
         {
-          title: "Fetch a complex data structure",
-          url: "web3://0x4e1f41613c9084fdb9e34e11fae9412427480e56/structureData/1699519297?returns=((uint,uint,int,int,int)[20])"
+          title: "Nouns",
+          url: "web3://nouns-wtf.eth/render/505",
         },
         {
-          title: "ResourceRequest resolve mode website",
-          url: "web3://0x2b51A751d3c7d3554E28DC72C3b032E5f56Aa656/view/1234?x=1&b=2",
+          title: "Ehtereum Name Service",
+          url: "web3://app-ens-domain.eth"
         },
         {
-          title: "Call a contract method on goerli",
-          url: "web3://0x76010876050387FA66E28a1883aD73d576D88Bf2:5/levelAndTile/2/50?returns=(uint256,uint256)"
+          title: "Cyber Brokers",
+          url: "web3://cyberbrokers-meta.eth/renderBroker/5"
         }
       ],
-      showWeb3UrlExamples: false,
-      chainList: {},
-      web3Client: null,
-      web3Url: "web3://vitalikblog.eth",
-      // Incremental parsing of the web3 URL by web3protocol-js is stored here.
-      parsedWeb3Url: {},
-      chainExplorerUrls: {
-        1: "https://etherscan.io/address/<address>#code",
-        5: "https://goerli.etherscan.io/address/<address>#code",
-        11155111: "https://sepolia.etherscan.io/address/<address>#code",
-        137: "https://polygonscan.com/address/<address>#code",
-        42170: "https://nova.arbiscan.io/address/<address>#code",
-        10: "https://optimistic.etherscan.io/address/<address>#code",
-      }
+      parsedWeb3Url: {}
     }
+  },
+  components: {
+    WebPage
   },
   watch: {
     web3Url: function (newWeb3Url) {
       // If the new value is a substring of web3://, put web3:// instead
-      if(newWeb3Url.length < "web3://".length && newWeb3Url == "web3://".substring(0, newWeb3Url.length)) {
+      if(newWeb3Url.length < "web3://".length && newWeb3Url === "web3://".substring(0, newWeb3Url.length)) {
         this.web3Url = "web3://";
       }
       // If the new value does not start with web3://, add it.
-      else if(newWeb3Url.startsWith("web3://") == false) {
+      else if(newWeb3Url.startsWith("web3://") === false) {
         this.web3Url = "web3://" + newWeb3Url;
       }
       // If the user pasted an URL starting with web3:// while there was already the
@@ -188,152 +128,21 @@ export default {
       }
     }
   },
-  created() {
-    // Load the web3 protocol client
-    this.chainList = getDefaultChainList()
-    this.web3Client = new Client(this.chainList)
-  },
   methods: {
-    /**
-     * Load the web3 URL in the embedded viewer.
-     * It will first load the URL using web3protocol-js, display a few infos (smart contract
-     * address, resolve mode, smart contract call) and then load the URL in an iframe.
-     */
-    async loadWeb3UrlInViewer() {
-      // Reinitialize the parsed web3 url
-      this.$set(this, 'parsedWeb3Url', {});
-      // Reinitialize the viewer
-      document.getElementById('clients-embedded-viewer').src = "";
-
-      // Show the viewer area
-      document.getElementById('clients-embedded-viewer-area').style.display = "block";
-
-      let urlMainParts
-      try {
-        // Step 1.1 : Extract parts of the URL, determine if a chain id was provided.
-        let chainId
-        ({urlMainParts, chainId} = this.web3Client.parseUrlBasic(this.web3Url))
-        this.$set(this.parsedWeb3Url, 'chainId', chainId);
-      }
-      catch(err) {
-        alert("web3curl: Basic parsing: Error: " + err.message + "\n")
-        return
-      }
-
-      try {
-        // Step 1.2 : For a given hostname, determine the target contract address.
-        let {contractAddress, chainId: updatedChainId, nameResolution} = await this.web3Client.determineTargetContractAddress(urlMainParts.hostname, this.parsedWeb3Url.chainId)
-        this.$set(this.parsedWeb3Url, 'contractAddress', contractAddress);
-        this.$set(this.parsedWeb3Url, 'chainId', updatedChainId);
-        this.$set(this.parsedWeb3Url, 'nameResolution', nameResolution);
-
-      }
-      catch(err) {
-        alert("web3curl: Hostname resolution: Error: " + err.message + "\n")
-        return;
-      }
-
-      try {
-        // Step 1.3 : Determine the web3 mode.
-        const resolveModeDeterminationResult = await this.web3Client.determineResolveMode(this.parsedWeb3Url.contractAddress, this.parsedWeb3Url.chainId)
-        this.$set(this.parsedWeb3Url, 'mode', resolveModeDeterminationResult.mode);
-        this.$set(this.parsedWeb3Url, 'modeDeterminationCalldata', resolveModeDeterminationResult.calldata);
-        this.$set(this.parsedWeb3Url, 'modeDeterminationReturn', resolveModeDeterminationResult.return);
-      }
-      catch(err) {
-        alert("web3curl: Resolve mode determination: Error: " + err.message + "\n")
-        return;
-      }
-
-      try {
-        // Step 1.4 : Parse the path part of the URL, given the web3 resolve mode.
-        let parsedPath = await this.web3Client.parsePathForResolveMode(urlMainParts.path, this.parsedWeb3Url.mode, this.parsedWeb3Url.chainId)
-        this.$set(this.parsedWeb3Url, 'parsedPath', parsedPath);
-      }
-      catch(err) {
-        alert("web3curl: Path parsing: Error: " + err.message + "\n")
-        return;
-      }
-
-      // Show the viewer
-      document.getElementById('clients-embedded-viewer').style.display = "block";
-      document.getElementById('clients-embedded-viewer-notice').style.display = "block";
-
-      // Load the web3 url in the embedded viewer
-      let gatewayUrl = this.web3UrlToGatewayUrl(this.web3Url);
-      document.getElementById('clients-embedded-viewer').src = gatewayUrl;
+    onSwitchAuto() {
+      this.inputType = 1;
     },
-
-    /**
-     * Load the web3 URL in a new tab.
-     */
-    loadWeb3UrlInNewTab(){
-      let gatewayUrl = this.web3UrlToGatewayUrl(this.web3Url);
-      this.openUrlInNewTab(gatewayUrl);
+    onSwitchInput() {
+      this.inputType = 2;
     },
-
-    /**
-     * Translate a web3:// URL to a gateway URL.
-     */
-    web3UrlToGatewayUrl(web3Url) {
-      // Parse the URL
-      let matchResult = web3Url.match(/^(?<protocol>[^:]+):\/\/(?<hostname>[^:/?]+)(:(?<chainId>[1-9][0-9]*))?(?<path>.*)?$/)
-      if(matchResult == null) {
-        alert("Invalid web3:// URL");
-      }
-      let urlMainParts = matchResult.groups
-
-      // Check protocol name
-      if(["web3", "w3"].includes(urlMainParts.protocol) == false) {
-        throw new Error("Bad protocol name");
-      }
-
-      // Get subdomain components
-      let gateway = "w3link.io"
-      let subDomains = []
-      // Is the contract an ethereum address?
-      if(/^0x[0-9a-fA-F]{40}$/.test(urlMainParts.hostname)) {
-        subDomains.push(urlMainParts.hostname)
-        if(urlMainParts.chainId !== undefined) {
-          subDomains.push(urlMainParts.chainId)
-        }
-        else {
-          gateway = "w3eth.io"
-        }
-      }
-      // It is a domain name
-      else {
-        // ENS domains on mainnet have a shortcut
-        if(urlMainParts.hostname.endsWith('.eth') && urlMainParts.chainId === undefined) {
-          gateway = "w3eth.io"
-          subDomains.push(urlMainParts.hostname.slice(0, -4))
-        }
-        else {
-          subDomains.push(urlMainParts.hostname)
-          if(urlMainParts.chainId !== undefined) {
-            subDomains.push(urlMainParts.chainId)
-          }
-        }
-      }
-
-      let gatewayUrl = "https://" + subDomains.join(".") + "." + gateway + (urlMainParts.path ?? "")
-      return gatewayUrl;
-    },
-
-    /**
-     * Open a URL in a new tab.
-     */
-    openUrlInNewTab(url) {
-      window.open(url, "_blank");
-      //_blank : 在新窗口打开
-      //_self : 在当前窗口打开
-      //window.location.href = url : 当前页面重定向
-    },
-
     handleScrollToSection(web3Url) {
+      this.onSwitchAuto();
       this.$refs.targetSection.scrollIntoView({behavior: 'smooth'});
       this.web3Url = web3Url;
-      this.loadWeb3UrlInViewer();
+      this.openFrame();
+    },
+    openFrame() {
+      this.isOpenFrame = true;
     }
   },
   mounted() {
@@ -341,7 +150,7 @@ export default {
   },
   beforeDestroy() {
     EventBus.$off('scrollToSection', this.handleScrollToSection);
-  },
+  }
 };
 </script>
 
@@ -361,7 +170,7 @@ export default {
 }
 
 .clients-title {
-  margin-top: 170px;
+  margin-top: 150px;
   color: #FFF;
   text-align: center;
   font-size: 40px;
@@ -371,137 +180,115 @@ export default {
   font-family: Satoshi;
 }
 
-.clients-url-bar-area {
-  margin-top: 50px;
-  margin-left: 20px;
-  margin-right: 20px;
-  width: 1000px;
+.clients-tab {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: start;
-  gap: 10px;
-}
-
-#clients-url-bar-wrapper {
-  flex: 1;
-  text-align: left;
-}
-
-#clients-url-bar {
-  min-width: 300px;
-  height: 40px;
-  padding-left: 10px;
-  font-size: 20px;
-  width: 100%;
-}
-
-#clients-url-bar-examples-show-button {
-  font-size: 12px;
-}
-
-#clients-url-bar-examples {
-  display: table;
-  width: 100%;
-  font-size: 14px;
-  border-width: 0px 1px 1px 1px;
-  border-color: #8f8f9d;
-  border-style: solid;
-  background-color: white;
-}
-
-#clients-url-bar-examples .clients-url-bar-example {
-  display: table-row;
-  text-align: left;
-  cursor: pointer;
-}
-#clients-url-bar-examples .clients-url-bar-example:hover {
-  background-color: #cfcfcf;
-}
-
-#clients-url-bar-examples .clients-url-bar-example-title,
-#clients-url-bar-examples .clients-url-bar-example-url {
-  display: table-cell;
-  padding: 6px 20px;
-}
-#clients-url-bar-examples .clients-url-bar-example-url {
-  word-break: break-all;
-}
-
-.clients-go-to-button {
-  width: 220px;
-  height: 50px;
-  background: #1174FF;
-  border-radius: 30px;
-  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 60px auto;
+}
+.clients-tab-btn {
   cursor: pointer;
-  font-size: 16px;
-  color: #FFFFFF;
-  font-family: AlibabaPuHuiTiB;
+  width: 412px;
+  height: 56px;
+  border-radius: 50px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 56px;
+  letter-spacing: -0.44px;
+  font-family: Satoshi;
+}
+.clients-tab-btn:hover {
+  opacity: 0.8;
+}
+.active {
+  border: 1px solid #6F41FF;
+  background-color: #6F41FF;
+}
+.btn-margin {
+  margin-left: 48px;
 }
 
-#clients-embedded-viewer-area {
-  padding-top: 25px;
-  margin-top: 25px;
-  background-color: #e1e1e1;
-  margin-bottom: 10px;
+
+.web3-auto-layout {
+  position: relative;
+  border: 2px solid #FFF;
+  width: 80%;
+  height: 70px;
+  margin-bottom: 175px;
+}
+.dot {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+}
+.dot1 {
+  position: absolute;
+  bottom: -5px;
+  left: -5px;
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+}
+.dot2 {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+}
+.dot3 {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+}
+.web3-go-to {
+  position: absolute;
+  height: 100%;
+  padding: 14px 0;
+  right: 16px;
+  content: url("@/assets/go-to.svg");
+}
+.web3-go-to:hover {
+  content: url("@/assets/go-to-hover.svg");
+}
+
+
+.clients-input {
+  background-color: transparent;
   width: 100%;
-  display: none;
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 80px;
+  color: #FFF;
+  border: none;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: Satoshi;
 }
 
-#clients-embedded-viewer-url-infos {
-  margin-bottom: 20px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: flex-start;
-  row-gap: 20px;
-  gap: 20px;
-}
 
-#clients-embedded-viewer-url-infos .infos-title {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-#clients-embedded-viewer-url-infos .infos-value .infos-value-subtitle {
-  font-weight: bold;
-}
-
-#clients-embedded-viewer {
-  display: none;
-  border: 1px solid rgb(97, 97, 97);
-  width: calc(100% - 20px);
-  height: 600px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-#clients-embedded-viewer-notice {
-  display: none;
-}
-
-.clients-others {
-  margin-top: 30px;
-  margin-bottom: 80px;
-}
-
-.loading-spinner {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #1174FF;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 2s linear infinite;
-  margin: 0 auto;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.web3-option-right {
+  color: #FFF;
+  margin-left: 20px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: Inter;
 }
 
 @media screen and (max-width: 500px) {
@@ -514,13 +301,159 @@ export default {
   }
 
   .clients-title {
-    margin-top: 35px;
-    font-size: 20px;
-    line-height: 20px;
+    margin-top: 40px;
+    font-size: 16px;
   }
 
-  .clients-url-bar-area {
-    width: auto;
+  .clients-tab {
+    margin: 24px auto;
+  }
+  .clients-tab-btn {
+    width: 160px;
+    height: 25px;
+    border-radius: 20px;
+    font-size: 10px;
+    line-height: 25px;
+  }
+  .btn-margin {
+    margin-left: 16px;
+  }
+
+
+  .web3-auto-layout {
+    border: 1px solid #FFF;
+    width: 90%;
+    height: 42px;
+    margin-bottom: 80px;
+  }
+  .dot {
+    right: -2px;
+    bottom: -2px;
+    width: 4px;
+    height: 4px;
+  }
+  .dot1 {
+    bottom: -2px;
+    left: -2px;
+    width: 4px;
+    height: 4px;
+  }
+  .dot2 {
+    top: -2px;
+    right: -2px;
+    width: 4px;
+    height: 4px;
+  }
+  .dot3 {
+    top: -2px;
+    left: -2px;
+    width: 4px;
+    height: 4px;
+  }
+  .web3-go-to {
+    height: 100%;
+    padding: 6px 0;
+    right: 6px;
+  }
+
+  .clients-input {
+    padding-left: 30px;
+    padding-right: 80px;
+    font-size: 10px;
+  }
+
+  .web3-option-right {
+    margin-left: 20px;
+    font-size: 10px;
+  }
+}
+</style>
+
+
+<style lang="scss" scoped>
+::v-deep .el-select {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 0;
+}
+::v-deep .el-input__inner {
+  padding-left: 50px;
+  padding-right: 80px;
+  width: 100%;
+  height: 70px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: #FFF;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: Satoshi;
+}
+::v-deep .el-input__suffix {
+  position: absolute;
+  left: 15px;
+  right: auto;
+}
+::v-deep .el-select .el-input .el-select__caret {
+  color: #fff;
+  font-size: 24px;
+}
+
+::v-deep .el-popper .popper__arrow, .el-popper .popper__arrow::after{
+  display: none;
+}
+::v-deep .el-select-dropdown{
+  background: rgba(0, 0, 0, 0.78);
+  margin: 0;
+  border: 2px solid #FFF;
+}
+::v-deep .el-select-dropdown__item{
+  background-color: transparent;
+  display: flex;
+  height: 60px;
+  padding: 0 50px;
+  gap: 8px;
+  align-items: center;
+  align-self: stretch;
+  color: #FFF;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-family: Inter;
+}
+::v-deep .el-select-dropdown__item.selected,
+::v-deep .el-select-dropdown__item.hover,
+::v-deep .el-select-dropdown__item:hover{
+  background: #6F41FF;
+  color: #FFF;
+}
+
+@media screen and (max-width: 500px) {
+  ::v-deep .el-input__inner {
+    padding-left: 30px;
+    padding-right: 80px;
+    height: 42px;
+    font-size: 10px;
+  }
+  ::v-deep .el-input__suffix {
+    left: 4px;
+  }
+  ::v-deep .el-select .el-input .el-select__caret {
+    font-size: 12px;
+  }
+
+  ::v-deep .el-select-dropdown{
+    border: 1px solid #FFF;
+  }
+  ::v-deep .el-select-dropdown__item {
+    height: 42px;
+    padding: 0 25px;
+    font-size: 10px;
   }
 }
 </style>
