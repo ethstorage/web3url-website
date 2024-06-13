@@ -6,9 +6,9 @@
         <div>
           <div class="infos-title">Smart Contract</div>
 
-          <div v-if="parsedWeb3Url.contractAddress == null" class="loading-spinner"></div>
+          <LoadingComponent v-if="parsedWeb3Url.contractAddress == null" />
           <div v-else>
-            <div class="normal-text">
+            <div class="normal-text normal-text-phone">
               <a v-if="parsedWeb3Url.chainId in chainExplorerUrls"
                  class="link-text" target="_blank"
                  :href="chainExplorerUrls[parsedWeb3Url.chainId].replace('<address>', parsedWeb3Url.contractAddress)">
@@ -29,7 +29,7 @@
                 </span>
             </div>
 
-            <div class="normal-text">
+            <div class="normal-text normal-text-phone">
               <span class="infos-value-subtitle">Domain name resolution: </span>
               {{
                 parsedWeb3Url.nameResolution.resolver ? parsedWeb3Url.nameResolution.resolver.toUpperCase() : "(none)"
@@ -63,7 +63,7 @@
                              class="link-text">?</a>
             </div>
             <div class="info-item-margin">
-              <div v-if="parsedWeb3Url.mode == null" class="loading-spinner"></div>
+              <LoadingComponent v-if="parsedWeb3Url.mode == null" />
               <div v-else>
                 <a v-if="parsedWeb3Url.mode === 'manual'" class="link-text"
                    href="https://docs.web3url.io/web3-url-structure/resolve-mode/mode-manual" target="_blank">
@@ -86,7 +86,7 @@
           <div class="infos-item-col">
             <div class="infos-title">Smart Contract call</div>
             <div class="info-item-margin">
-              <div v-if="parsedWeb3Url.parsedPath == null" class="loading-spinner"></div>
+              <LoadingComponent v-if="parsedWeb3Url.parsedPath == null" />
               <div v-else class="normal-text">
                 <div v-if="parsedWeb3Url.parsedPath.contractCallMode === 'method'">
                   <div>
@@ -97,10 +97,9 @@
                   </div>
                   <div>
                     <span class="infos-value-subtitle">Args: </span>
-                    <code v-for="argValue in parsedWeb3Url.parsedPath.methodArgValues" :key="argValue"
-                          style="margin-right: 10px;">
+                    <span v-for="argValue in parsedWeb3Url.parsedPath.methodArgValues" :key="argValue">
                       {{ argValue }}
-                    </code>
+                    </span>
                   </div>
                 </div>
                 <div v-else-if="parsedWeb3Url.parsedPath.contractCallMode === 'calldata'">
@@ -122,6 +121,7 @@
 </template>
 
 <script>
+import LoadingComponent from "@/components/LoadingComponent.vue";
 import {Client} from 'web3protocol';
 import {getDefaultChainList} from 'web3protocol/chains';
 
@@ -143,6 +143,9 @@ export default {
         10: "https://optimistic.etherscan.io/address/<address>#code",
       },
     }
+  },
+  components: {
+    LoadingComponent
   },
   props: {
     web3Url: {
@@ -426,26 +429,75 @@ export default {
   margin-top: 16px;
 }
 
-.loading-spinner {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #1174FF;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 2s linear infinite;
-  margin: 0 auto;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 @media screen and (max-width: 500px) {
+  #clients-embedded-viewer-area {
+    width: 95%;
+    margin: 0 auto;
+  }
 
+  .clients-content {
+    padding: 12px;
+    margin: 5px;
+
+    .cancel {
+      margin-bottom: 5px;
+    }
+  }
+
+  #clients-embedded-viewer-url-infos {
+    padding: 16px;
+    gap: 12px;
+    height: 180px;
+
+    .infos-value-subtitle {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .infos-item-layout {
+      width: 100%;
+      margin-top: 0px;
+
+      .infos-item-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .info-item-margin {
+        margin-top: 1px;
+      }
+    }
+  }
+
+  .infos-title {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .normal-text {
+    margin-top: 4px;
+    font-size: 10px;
+  }
+  .link-text {
+    font-size: 10px;
+  }
+
+  .text-margin {
+    width: 100%;
+    text-align: right;
+    margin: 4px 0 0;
+  }
+
+  #clients-embedded-viewer {
+    height: 368px;
+  }
+
+  .normal-text-phone {
+    text-align: center;
+    margin: 8px auto 0;
+    width: 65%;
+  }
 }
 </style>

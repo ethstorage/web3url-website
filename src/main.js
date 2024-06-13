@@ -8,6 +8,7 @@ import './assets/main.css'
 import './assets/font/font.css';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'buefy/dist/buefy.css';
+import 'spinkit/spinkit.min.css';
 
 Vue.use(ElementUI);
 Vue.use(Buefy);
