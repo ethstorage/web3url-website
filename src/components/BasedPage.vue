@@ -41,11 +41,11 @@
                      titleBgColor="#d8ccff"
                      title="web3://-Accessible Mainnet Resources">
         <div class="card-layout">
-          <img class="card-item-img" src="@/assets/vblog.png" @click="goVitalik"/>
+          <img class="card-item-img" src="@/assets/vblog.svg" @click="goVitalik"/>
           <img class="card-item-img" src="@/assets/moonbird.png" @click="goMoonBird"/>
           <img class="card-item-img" src="@/assets/art.png" @click="goArtBlock"/>
-          <img class="card-item-img" src="@/assets/nous.png" @click="goNous"/>
-          <img class="card-item-img" src="@/assets/etherum-name-serve.png" @click="goEns"/>
+          <img class="card-item-img" src="@/assets/nous.svg" @click="goNous"/>
+          <img class="card-item-img" src="@/assets/etherum-name-serve.svg" @click="goEns"/>
           <img class="card-item-img" src="@/assets/cyber-brokers.png" @click="goCyberbrokers"/>
         </div>
       </CardComponent>
@@ -192,8 +192,8 @@ export default {
   cursor: pointer;
   height: 114px;
   flex-shrink: 0;
-  border-radius: 15px;
-  border: 1px solid transparent;
+  border-radius: 18.241px;
+  border: 1px solid #000;
   background: lightgray 50% / cover no-repeat;
 }
 

@@ -8,13 +8,7 @@
                      shadowColor="#d8ccff"
                      titleBgColor="#d8ccff">
         <template v-slot:title>
-          <div class="web3-card-title">
-            <span class="web3-card-title-item">web3:// (defined by ERC4804</span>
-            <a class="use-text-a" href="https://eips.ethereum.org/EIPS/eip-4804" target="_blank">
-              <img class="rt-go" src="@/assets/arrow-right.svg"/>
-            </a>
-            <span class="web3-card-title-item">)</span>
-          </div>
+          web3:// (defined by <span class="web3-title-link" @click="open4844">ERC4804 <img class="rt-go" src="@/assets/arrow-right.svg"/></span>)
         </template>
         <div class="card-layout">
           <img class="use-image1" src="@/assets/auto-mode.svg"/>
@@ -46,6 +40,11 @@ export default {
   components: {
     CardComponent
   },
+  methods: {
+    open4844() {
+      window.open('https://eips.ethereum.org/EIPS/eip-4804', "_blank");
+    }
+  }
 };
 </script>
 
@@ -127,6 +126,13 @@ export default {
   cursor: pointer;
   padding: 0 3px 5px 0;
 }
+
+.web3-title-link {
+  cursor: pointer;
+}
+.web3-title-link:hover {
+  opacity: 0.6;
+}
 @media screen and (max-width: 500px) {
   .home {
     width: 100%;
@@ -175,21 +181,9 @@ export default {
     content: url("@/assets/http-phone.png");
   }
 
-  .web3-card-title {
-    display: block;
-    vertical-align: middle;
-    box-sizing: border-box;
-    height: 20px;
-  }
-  .web3-card-title-item {
-    height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    box-sizing: border-box;
-  }
-
   .rt-go {
-    padding: 2px 3px 0 0;
+    padding: 0;
+    width: 12px;
   }
 }
 </style>

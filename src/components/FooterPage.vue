@@ -101,7 +101,7 @@ export default {
 
 .footer-b {
   padding-bottom: 50px;
-  width: 1400px;
+  width: 1280px;
   margin: -80px auto 0;
   display: flex;
   flex-direction: row;
@@ -110,7 +110,7 @@ export default {
 }
 
 .logo-icon {
-  width: 135px;
+  height: 34px;
 }
 
 .community-layout {

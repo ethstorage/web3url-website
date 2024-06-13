@@ -11,16 +11,21 @@
               <div class="web-left-msg-item">
                 <div class="web-left-title2">Two types of gateways:</div>
                 <div class="web-left-msg">
-                  1. Multi-Blockchain Gateway: w3link.io <img @click="onReadMore" class="rt-go" src="@/assets/arrow.svg"/>
+                  1. Multi-Blockchain Gateway: <span class="web-left-msg-btn" @click="onReadMore">w3link.io <img class="rt-go"
+                                                                                        src="@/assets/arrow.svg"/></span>
                 </div>
                 <div class="web-left-msg">
-                  2.Ethereum-Only Gateway: w3eth.io <img @click="onW3link" class="rt-go" src="@/assets/arrow.svg"/>
+                  2.Ethereum-Only Gateway: <span class="web-left-msg-btn" @click="onW3link">w3eth.io <img class="rt-go"
+                                                                                 src="@/assets/arrow.svg"/></span>
                 </div>
               </div>
               <div class="web-left-msg-item">
                 <div class="web-left-title2">Example:</div>
-                <div class="web-left-link">web3://vitalikblog.eth</div>
-                <div class="web-left-link">https://vitalik.eth.eth.w3link.io/</div>
+                <div class="web3-to-http-layout">
+                  <div class="web-left-link">web3://vitalikblog.eth</div>
+                  <img class="web-link-arrow" src="@/assets/down-arrow.svg"/>
+                  <div class="web-left-link">https://vitalik.eth.eth.w3link.io/</div>
+                </div>
               </div>
             </div>
             <div class="web-left-msg web-margin">
@@ -75,8 +80,8 @@
           <div class="web-context-right1 web-context-left2">
             <div class="web-context-layout">
               <div class="web-right-item">
-                <div class="web-lr-title">
-                  Firefox Extension <img @click="onFirefox" class="rt-go" src="@/assets/arrow-right.svg"/>
+                <div class="web-lr-title" @click="onFirefox">
+                  Firefox Extension <img class="rt-go" src="@/assets/arrow-right.svg"/>
                 </div>
                 <div class="web-lr-msg">
                   The extension will let you use the HTTP gateway more efficiently, by converting web3:// URLs into
@@ -90,8 +95,8 @@
             <div class="web-context-layout web-lr-margin">
               <img class="web-lr-img web-lr-img-margin2" alt="" src="@/assets/browser.svg"/>
               <div class="web-right-item">
-                <div class="web-lr-title">
-                  Native Browser <img @click="onBrowser" class="rt-go" src="@/assets/arrow-right.svg"/>
+                <div class="web-lr-title" @click="onBrowser">
+                  Native Browser <img class="rt-go" src="@/assets/arrow-right.svg"/>
                 </div>
                 <div class="web-lr-msg">
                   EVM browser is a basic web browser based on electron/chromium which supports the web3:// protocol via
@@ -102,8 +107,8 @@
 
             <div class="web-context-layout">
               <div class="web-right-item">
-                <div class="web-lr-title">
-                  Web3curl <img @click="onWeb3curl" class="rt-go" src="@/assets/arrow-right.svg"/>
+                <div class="web-lr-title" @click="onWeb3curl">
+                  Web3curl <img class="rt-go" src="@/assets/arrow-right.svg"/>
                 </div>
                 <div class="web-lr-msg">
                   Web3curl is a curl-like app to download data from an web3:// URL. It can be very useful to help
@@ -232,6 +237,16 @@ export default {
   line-height: 140%; /* 33.6px */
   font-family: Satoshi;
 }
+.web3-to-http-layout {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-items: center;
+  padding: 16px;
+  border-radius: 23px;
+  background: rgba(255, 180, 148, 0.10);
+}
 .web-left-msg {
   text-align: left;
   color: rgba(255, 220, 213, 0.80);
@@ -241,17 +256,24 @@ export default {
   line-height: 140%; /* 25.2px */
   font-family: SatoshiRegular;
 }
+.web-left-msg-btn {
+  cursor: pointer;
+}
+.web-left-msg-btn:hover {
+  opacity: 0.7;
+}
 .web-left-link {
-  margin-top: 23px;
-  width: 100%;
   color: #FFF;
-  text-align: center;
   font-size: 18px;
   font-style: normal;
   font-weight: 300;
   line-height: 140%; /* 25.2px */
   opacity: 0.8;
   font-family: SatoshiRegular;
+}
+.web-link-arrow {
+  height: 16px;
+  margin: 8px
 }
 
 .web-margin {
@@ -334,11 +356,7 @@ export default {
 }
 
 .rt-go {
-  cursor: pointer;
   padding: 3px 3px 5px 1px;
-}
-.rt-go:hover {
-  opacity: 0.7;
 }
 
 .how-card-margin {
@@ -351,12 +369,16 @@ export default {
   padding-bottom: 80px;
 }
 .web-lr-title {
+  cursor: pointer;
   color: #000;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: 48px; /* 200% */
   font-family: Satoshi;
+}
+.web-lr-title:hover {
+  opacity: 0.6;
 }
 .web-lr-msg {
   margin-top: 15px;
@@ -449,14 +471,24 @@ export default {
     font-size: 10px;
     font-weight: 500;
   }
+  .web3-to-http-layout {
+    width: 100%;
+    padding: 5px 0 0;
+    border-radius: 0;
+    background: transparent;
+  }
   .web-left-msg {
     font-size: 10px;
   }
   .web-left-link {
-    margin-top: 8px;
     font-size: 10px;
     text-align: left;
   }
+  .web-link-arrow {
+    height: 8px;
+    margin: 2px
+  }
+
   .web-margin {
     margin-top: 16px;
     margin-bottom: 0;

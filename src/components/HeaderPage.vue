@@ -96,7 +96,7 @@ export default {
 }
 
 .header-content {
-  margin-top:  9rem;
+  margin-top:  2.91rem;
   text-align: left;
   color: #070102;
   font-size: 1.5rem;
@@ -112,7 +112,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 5.4rem;
+  margin-top: 10.88rem;
 }
 .lb-text {
   cursor: pointer;

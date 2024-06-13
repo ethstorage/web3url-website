@@ -86,7 +86,7 @@
 .work-img {
   width: 100%;
   margin-top: -19%;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 @media screen and (max-width: 500px) {
   .home {
