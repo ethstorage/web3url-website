@@ -11,14 +11,14 @@
   </div>
 </template>
 <script>
-import HeaderPage from '../components/HeaderPage.vue';
-import BasedPage from '../components/BasedPage.vue';
-import ClientsPage from '../components/ClientsPage.vue';
-import UsePage from '../components/UsePage.vue';
-import WorkPage from '../components/WorkPage.vue';
-import WebUrlPage from '../components/WebUrlPage.vue';
-import HowPage from "@/components/HowPage.vue";
-import FooterPage from "@/components/FooterPage.vue";
+import HeaderPage from '../page/HeaderPage.vue';
+import BasedPage from '../page/BasedPage.vue';
+import ClientsPage from '../page/ClientsPage.vue';
+import UsePage from '../page/UsePage.vue';
+import WorkPage from '../page/WorkPage.vue';
+import WebUrlPage from '../page/WebUrlPage.vue';
+import HowPage from "@/page/HowPage.vue";
+import FooterPage from "@/page/FooterPage.vue";
 
 export default {
   name: "HomePage",

@@ -64,12 +64,13 @@ export default {
 }
 
 .header {
-  margin: 0 0 0 auto;
-  width: 1400px;
+  margin: 0 auto;
+  width: 1280px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .content {
@@ -148,6 +149,7 @@ video {
     margin: 0 auto;
     width: 100%;
     flex-direction: column;
+    gap: 0;
   }
 
   .content {

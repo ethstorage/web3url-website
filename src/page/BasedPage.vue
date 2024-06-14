@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import CardComponent from "./CardComponent";
+import CardComponent from "../components/CardComponent";
 import { EventBus } from '@/utils/eventBus.js';
 
 export default {

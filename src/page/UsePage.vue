@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import CardComponent from "./CardComponent";
+import CardComponent from "../components/CardComponent";
 
 export default {
   name: "UsePage",
