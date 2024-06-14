@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { EventBus } from '@/utils/eventBus.js';
 import WebPage from "@/components/WebPage";
 
 export default {
@@ -135,22 +134,10 @@ export default {
     onSwitchInput() {
       this.inputType = 2;
     },
-    handleScrollToSection(web3Url) {
-      this.onSwitchAuto();
-      this.$refs.targetSection.scrollIntoView({behavior: 'smooth'});
-      this.web3Url = web3Url;
-      this.openFrame();
-    },
     openFrame() {
       this.isOpenFrame = true;
     }
   },
-  mounted() {
-    EventBus.$on('scrollToSection', this.handleScrollToSection);
-  },
-  beforeDestroy() {
-    EventBus.$off('scrollToSection', this.handleScrollToSection);
-  }
 };
 </script>
 

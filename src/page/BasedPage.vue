@@ -50,56 +50,71 @@
         </div>
       </CardComponent>
     </div>
+
+    <b-modal v-model="isOpenFrame" :can-cancel="false">
+      <WebPage :web3Url="web3Url"/>
+    </b-modal>
   </div>
 </template>
 
 <script>
 import CardComponent from "../components/CardComponent";
-import { EventBus } from '@/utils/eventBus.js';
+import WebPage from "@/components/WebPage";
 
 export default {
   name: "BasedPage",
+  data() {
+    return {
+      web3Url: "",
+      isOpenFrame: false,
+    }
+  },
   components: {
-    CardComponent
+    CardComponent,
+    WebPage
   },
   methods: {
+    openFrame(url) {
+      this.web3Url = url;
+      this.isOpenFrame = true;
+    },
     goW3box(){
-      EventBus.$emit('scrollToSection', 'web3://w3-box.eth');
+      this.openFrame('web3://w3-box.eth');
     },
     goW3drive(){
-      EventBus.$emit('scrollToSection', 'web3://w3-drive.eth');
+      this.openFrame('web3://w3-drive.eth');
     },
     goW3Blog(){
-      EventBus.$emit('scrollToSection', 'web3://w3-blog.eth');
+      this.openFrame('web3://w3-blog.eth');
     },
     goQRobot(){
-      EventBus.$emit('scrollToSection', 'web3://w3-qrobot.eth');
+      this.openFrame('web3://w3-qrobot.eth');
     },
     goW3mail(){
-      EventBus.$emit('scrollToSection', 'web3://w3-email.eth');
+      this.openFrame('web3://w3-email.eth');
     },
 
     goCyberbrokers(){
-      EventBus.$emit('scrollToSection', 'web3://cyberbrokers-meta.eth/renderBroker/5');
+      this.openFrame('web3://cyberbrokers-meta.eth/renderBroker/5');
     },
     goEns(){
-      EventBus.$emit('scrollToSection', 'web3://app-ens-domain.eth');
+      this.openFrame('web3://app-ens-domain.eth');
     },
     goNous() {
-      EventBus.$emit('scrollToSection', 'web3://nouns-wtf.eth/render/505');
+      this.openFrame('web3://nouns-wtf.eth/render/505');
     },
     goVitalik(){
-      EventBus.$emit('scrollToSection', 'web3://vitalikblog.eth');
+      this.openFrame('web3://vitalikblog.eth');
     },
     goMoonBird() {
-      EventBus.$emit('scrollToSection', 'web3://moon-birds-xyz.eth/render/9880');
+      this.openFrame('web3://moon-birds-xyz.eth/render/9880');
     },
     goArtBlock(){
-      EventBus.$emit('scrollToSection', 'web3://art-blocks-io.eth/render/78/0');
+      this.openFrame('web3://art-blocks-io.eth/render/78/0');
     },
     goWeb3() {
       window.open('https://github.com/ethstorage/awesome-web3', "_blank");
-    }
+    },
   },
 };
 </script>

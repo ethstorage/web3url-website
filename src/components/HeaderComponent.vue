@@ -68,10 +68,10 @@ a.w3q-link:hover {
 
 
 .navbar {
-  max-width: 100%;
+  max-width: 1400px;
   height: 2.4375rem;
   padding: 0;
-  margin: 2.88rem 5.12rem 0;
+  margin: 30px auto 0;
   background: transparent;
 }
 .logo-div {

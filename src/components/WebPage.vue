@@ -421,6 +421,9 @@ export default {
   margin: 16px 0 0;
   cursor: pointer;
 }
+.text-margin:hover {
+  opacity: 0.6;
+}
 
 #clients-embedded-viewer {
   border: 0.6px solid #FFF;

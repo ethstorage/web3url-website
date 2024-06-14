@@ -24,9 +24,7 @@
         </div>
       </div>
       <div class="content-video">
-        <video autoplay loop muted playsinline>
-          <source :src="videoSrc" type="video/webm">
-        </video>
+        <VideoPlayer :videoSrc="videoSrc" :placeholderImage="videoReplace" />
       </div>
     </div>
   </div>
@@ -34,14 +32,17 @@
 
 <script>
 import HeaderComponent from '../components/HeaderComponent.vue';
+import VideoPlayer from '../components/VideoPlayer.vue';
 
 export default {
   name: "HeaderPage",
   components: {
-    HeaderComponent
+    HeaderComponent,
+    VideoPlayer
   },
   data() {
     return {
+      videoReplace: require('@/assets/video-replace.png'),
       videoSrc: require('@/assets/video.webm')
     };
   },
@@ -69,8 +70,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+  align-items: flex-start;
 }
 
 .content {
@@ -80,7 +80,7 @@ export default {
   align-items: flex-start;
 }
 .header-title {
-  margin-top: -5rem;
+  margin-top: 70px;
   text-align: left;
   color: #070102;
   font-style: normal;
@@ -97,7 +97,7 @@ export default {
 }
 
 .header-content {
-  margin-top:  2.91rem;
+  margin-top:  45px;
   text-align: left;
   color: #070102;
   font-size: 1.5rem;
@@ -113,7 +113,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 10.88rem;
+  margin-top: 124px;
 }
 .lb-text {
   cursor: pointer;
@@ -133,7 +133,7 @@ export default {
 
 
 .content-video {
-  width: 65%;
+  width: 63%;
 }
 video {
   width: 100%;
