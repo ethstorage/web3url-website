@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="web-left-msg web-margin">
-              Wanna contribute to the decentralization and run your gateway? Apply a grant for support!
+              Wanna contribute to the decentralization and run your gateway? Apply a <a href="mailto:contact@ethstorage.io" target="_blank">grant</a> for support!
             </div>
           </div>
           <div class="web-context-right1">
@@ -279,6 +279,10 @@ export default {
 .web-margin {
   margin-top: 40px;
   margin-bottom: 85px;
+}
+.web-margin a:hover {
+  color: #6F41FF;
+  background-color: transparent;
 }
 
 .web-context-right1 {
