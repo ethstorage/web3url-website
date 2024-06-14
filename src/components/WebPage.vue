@@ -179,8 +179,8 @@ export default {
         ({urlMainParts, chainId} = this.web3Client.parseUrlBasic(this.web3Url))
         this.$set(this.parsedWeb3Url, 'chainId', chainId);
       } catch (err) {
-        alert("web3curl: Basic parsing: Error: " + err.message + "\n")
-        return
+        this.onAlert("web3curl: Basic parsing","Error: " + err.message);
+        return;
       }
 
       try {
@@ -195,7 +195,7 @@ export default {
         this.$set(this.parsedWeb3Url, 'nameResolution', nameResolution);
 
       } catch (err) {
-        alert("web3curl: Hostname resolution: Error: " + err.message + "\n")
+        this.onAlert("web3curl: Hostname resolution","Error: " + err.message)
         return;
       }
 
@@ -206,7 +206,7 @@ export default {
         this.$set(this.parsedWeb3Url, 'modeDeterminationCalldata', resolveModeDeterminationResult.calldata);
         this.$set(this.parsedWeb3Url, 'modeDeterminationReturn', resolveModeDeterminationResult.return);
       } catch (err) {
-        alert("web3curl: Resolve mode determination: Error: " + err.message + "\n")
+        this.onAlert("web3curl: Resolve mode determination","Error: " + err.message)
         return;
       }
 
@@ -215,7 +215,7 @@ export default {
         let parsedPath = await this.web3Client.parsePathForResolveMode(urlMainParts.path, this.parsedWeb3Url.mode, this.parsedWeb3Url.chainId)
         this.$set(this.parsedWeb3Url, 'parsedPath', parsedPath);
       } catch (err) {
-        alert("web3curl: Path parsing: Error: " + err.message + "\n")
+        this.onAlert("web3curl: Path parsing", "Error: " + err.message)
         return;
       }
 
@@ -229,13 +229,16 @@ export default {
       // Parse the URL
       let matchResult = web3Url.match(/^(?<protocol>[^:]+):\/\/(?<hostname>[^:/?]+)(:(?<chainId>[1-9][0-9]*))?(?<path>.*)?$/)
       if (matchResult == null) {
-        alert("Invalid web3:// URL");
+        this.onAlert("", "Invalid web3:// URL");
+        return;
       }
+
       let urlMainParts = matchResult.groups
 
       // Check protocol name
-      if (["web3", "w3"].includes(urlMainParts.protocol) == false) {
-        throw new Error("Bad protocol name");
+      if (["web3", "w3"].includes(urlMainParts.protocol) === false) {
+        this.onAlert("", "Bad protocol name");
+        return;
       }
 
       // Get subdomain components
@@ -277,6 +280,13 @@ export default {
     },
     openUrlInNewTab(url) {
       window.open(url, "_blank");
+    },
+    onAlert(title, text) {
+      this.$alert(text, title,{
+        confirmButtonText: 'OK',
+        lockScroll: false,
+      });
+      this.onCancel();
     },
     onCancel() {
       this.$parent.close();

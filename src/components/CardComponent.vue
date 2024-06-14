@@ -56,13 +56,7 @@ export default {
     window.removeEventListener('resize', this.updateTargetSize);
   },
   methods: {
-    isMobile() {
-      return window.matchMedia("(max-width: 500px)").matches;
-    },
     updateTargetSize() {
-      if (this.$refs.sourceTitleDiv) {
-        this.$refs.sourceTitleDiv.style.width = '';
-      }
       this.$nextTick(() => {
         if (this.$refs.sourceDiv) {
           this.shadowHeight = this.$refs.sourceDiv.offsetHeight;
@@ -70,10 +64,6 @@ export default {
 
         if (this.$refs.sourceTitleDiv) {
           this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth;
-          if (this.titleShadowWidth < 475 && !this.isMobile()) {
-            this.titleShadowWidth = 475;
-            this.$refs.sourceTitleDiv.style.width = '475px';
-          }
         }
 
         if (this.$refs.centerDiv) {
@@ -144,6 +134,7 @@ export default {
   align-items: center;
 }
 .web3AccessibleMainnetRes {
+  min-width: 423px;
   margin: auto 25px;
   color: #000;
   font-size: 1.625rem;
@@ -182,6 +173,7 @@ export default {
     border-radius: 12px;
   }
   .web3AccessibleMainnetRes {
+    min-width: auto;
     font-size: 10px;
   }
 
