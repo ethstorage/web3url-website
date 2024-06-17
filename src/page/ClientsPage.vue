@@ -9,8 +9,8 @@
             class="inline-input" popper-class="popper-input"
             v-model="web3Url"
             :fetch-suggestions="this.querySearch"
-            :select-when-unmatched="true"
             :popper-append-to-body="false"
+            @keyup.native="onKeyUp"
             @blur="onBlur"
             @focus="onFocus"
             @input="handleInput"
@@ -18,6 +18,12 @@
           <template slot="prefix">
             <div class="select-icon" :class="{'selectOpen':selectOpen}" @click="onClick">
               <i class="el-icon-arrow-down"></i>
+            </div>
+          </template>
+
+          <template slot="suffix">
+            <div class="web3-go-to" @click.stop="openFrame">
+              <GoIcon/>
             </div>
           </template>
 
@@ -33,7 +39,6 @@
         <div class="dot1"/>
         <div class="dot2"/>
         <div class="dot3"/>
-        <img class="web3-go-to" @click="openFrame" alt="go"/>
       </div>
 
       <b-modal v-model="isOpenFrame" :can-cancel="false">
@@ -45,6 +50,7 @@
 
 <script>
 import WebPage from "@/components/WebPage";
+import GoIcon from "@/components/GoIcon";
 
 export default {
   name: "ClientsPage",
@@ -103,7 +109,8 @@ export default {
     }
   },
   components: {
-    WebPage
+    WebPage,
+    GoIcon
   },
   methods: {
     openFrame() {
@@ -136,6 +143,12 @@ export default {
     onClick() {
       if (!this.selectOpen) {
         this.$refs.inputEdit.focus();
+      }
+    },
+    onKeyUp(event) {
+      if (event.key === 'Enter') {
+        this.$refs.inputEdit.close();
+        this.openFrame();
       }
     }
   },
@@ -265,14 +278,14 @@ export default {
 }
 
 .web3-go-to {
-  position: absolute;
+  cursor: pointer;
   height: 100%;
-  padding: 14px 0;
-  right: 16px;
-  content: url("@/assets/go-to.svg");
-}
-.web3-go-to:hover {
-  content: url("@/assets/go-to-hover.svg");
+  margin-right: -10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  -webkit-transform:scale(0.8);
 }
 
 .inline-input {
@@ -354,9 +367,8 @@ export default {
     height: 4px;
   }
   .web3-go-to {
-    height: 100%;
-    padding: 6px 0;
-    right: 6px;
+    margin-right: -35px;
+    -webkit-transform:scale(0.5);
   }
 
   .web3-option-right {
