@@ -8,9 +8,9 @@
     </div>
     <div v-if="this.showTitle" ref="centerDiv" class="rectangleGroup">
       <div class="rectangleDiv" :style="{ width: titleShadowWidth + 'px' }"/>
-      <div ref="sourceTitleDiv" class="web3AccessibleMainnetResWrapper" :style="{ backgroundColor: this.titleBgColor}">
-        <div class="web3AccessibleMainnetRes">
-          {{this.title}}
+      <div class="web3AccessibleMainnetResWrapper" :style="{ backgroundColor: this.titleBgColor}">
+        <div ref="sourceTitleDiv" class="web3AccessibleMainnetRes">
+          {{ this.title }}
           <slot name="title"></slot>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default {
         }
 
         if (this.$refs.sourceTitleDiv) {
-          this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth;
+          this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth + 50;
         }
 
         if (this.$refs.centerDiv) {
