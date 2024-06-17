@@ -107,7 +107,8 @@ a.w3q-link:hover {
     margin: 15px;
   }
   .logo-icon {
-    height: 25px;
+    height: 50px;
+    width: 80px;
     margin-left: 15px;
   }
 }

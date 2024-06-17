@@ -65,6 +65,7 @@ export default {
 }
 
 .header {
+  transform: translateX(60px);
   margin: 0 auto;
   width: 1280px;
   display: flex;
@@ -146,6 +147,7 @@ video {
   }
 
   .header {
+    transform: translateX(0);
     margin: 0 auto;
     width: 100%;
     flex-direction: column;
