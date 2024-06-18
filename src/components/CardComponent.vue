@@ -7,9 +7,14 @@
       <slot></slot>
     </div>
     <div v-if="this.showTitle" ref="centerDiv" class="rectangleGroup">
-      <div class="rectangleDiv" :style="{ width: titleShadowWidth + 'px' }"/>
-      <div class="web3AccessibleMainnetResWrapper" :style="{ backgroundColor: this.titleBgColor}">
-        <div ref="sourceTitleDiv" class="web3AccessibleMainnetRes">
+      <div class="rectangleDiv">
+        <div class="web3AccessibleMainnetRes">
+          {{ this.title }}
+          <slot name="title"></slot>
+        </div>
+      </div>
+      <div ref="centerTitle" class="web3AccessibleMainnetResWrapper" :style="{ backgroundColor: this.titleBgColor}">
+        <div class="web3AccessibleMainnetRes">
           {{ this.title }}
           <slot name="title"></slot>
         </div>
@@ -22,8 +27,7 @@
 export default {
   data() {
     return {
-      shadowHeight: 0,
-      titleShadowWidth: 0,
+      shadowHeight: 0
     };
   },
   props: {
@@ -51,9 +55,14 @@ export default {
   mounted() {
     this.updateTargetSize();
     window.addEventListener('resize', this.updateTargetSize);
+
+    this.resizeObserver = new ResizeObserver(this.updateTargetSize);
+    this.resizeObserver.observe(this.$refs.centerTitle);
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.updateTargetSize);
+    if (this.resizeObserver)
+      this.resizeObserver.disconnect();
   },
   methods: {
     updateTargetSize() {
@@ -62,13 +71,10 @@ export default {
           this.shadowHeight = this.$refs.sourceDiv.offsetHeight;
         }
 
-        if (this.$refs.sourceTitleDiv) {
-          this.titleShadowWidth = this.$refs.sourceTitleDiv.offsetWidth + 50;
-        }
-
-        if (this.$refs.centerDiv) {
+        if (this.$refs.centerTitle) {
           const containerWidth = this.$el.offsetWidth;
-          const leftPosition = (containerWidth - this.titleShadowWidth) / 2;
+          const viewWidth = this.$refs.centerTitle.offsetWidth;
+          const leftPosition = (containerWidth - viewWidth) / 2;
           this.$refs.centerDiv.style.left = `${leftPosition}px`;
         }
       });
@@ -121,6 +127,11 @@ export default {
   border-radius: 20px;
   background-color: #000;
   height: 65px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .web3AccessibleMainnetResWrapper {
   position: absolute;
