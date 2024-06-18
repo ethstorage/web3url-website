@@ -6,7 +6,7 @@
         <div>
           <div class="infos-title">Smart Contract</div>
 
-          <LoadingComponent v-if="parsedWeb3Url.contractAddress == null" />
+          <LoadingComponent v-if="parsedWeb3Url.contractAddress == null" class="top-title-phone"/>
           <div v-else>
             <div class="normal-text normal-text-phone">
               <a v-if="parsedWeb3Url.chainId in chainExplorerUrls"
@@ -298,7 +298,8 @@ export default {
 <style lang="scss" scoped>
 #clients-embedded-viewer-area {
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 .dot {
   position: absolute;
@@ -359,12 +360,13 @@ export default {
 #clients-embedded-viewer-url-infos {
   padding: 24px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 16px;
   align-self: stretch;
   border: 0.6px solid #FFF;
-  height: 188px;
+  height: 138px;
 
   .infos-value-subtitle {
     text-align: left;
@@ -381,8 +383,7 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    width: 100%;
-    margin-top: 10px;
+    width: 30%;
 
     .infos-item-col {
       display: flex;
@@ -438,7 +439,7 @@ export default {
 #clients-embedded-viewer {
   border: 0.6px solid #FFF;
   width: 100%;
-  height: 420px;
+  height: 450px;
   margin-top: 16px;
 }
 
@@ -458,6 +459,9 @@ export default {
   }
 
   #clients-embedded-viewer-url-infos {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     padding: 16px;
     gap: 12px;
     height: 180px;
@@ -470,7 +474,6 @@ export default {
 
     .infos-item-layout {
       width: 100%;
-      margin-top: 0px;
 
       .infos-item-col {
         display: flex;
@@ -511,6 +514,10 @@ export default {
     text-align: center;
     margin: 8px auto 0;
     width: 65%;
+  }
+
+  .top-title-phone {
+    margin-left: 30px;
   }
 }
 </style>

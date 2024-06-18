@@ -51,7 +51,7 @@
       </CardComponent>
     </div>
 
-    <b-modal v-model="isOpenFrame" :can-cancel="false">
+    <b-modal width="100%" v-model="isOpenFrame" :can-cancel="false">
       <WebPage :web3Url="web3Url"/>
     </b-modal>
   </div>
