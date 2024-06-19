@@ -229,7 +229,7 @@ export default {
 }
 @media screen and (max-width: 500px) {
   .based {
-    max-width: 95%;
+    max-width: 90%;
   }
 
   .based-title {

@@ -94,7 +94,7 @@
   }
 
   .web-url {
-    max-width: 95%;
+    max-width: 90%;
   }
 
   .web-url-title {

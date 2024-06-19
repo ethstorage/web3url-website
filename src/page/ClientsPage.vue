@@ -328,7 +328,7 @@ export default {
   }
 
   .clients {
-    max-width: 100%;
+    max-width: 95%;
   }
 
   .clients-title {

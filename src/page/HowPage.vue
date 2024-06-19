@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="web-left-msg web-margin">
-              Wanna contribute to the decentralization and run your gateway? Apply a <a href="mailto:contact@ethstorage.io" target="_blank">grant</a> for support!
+              Wanna contribute to the decentralization and run your gateway? <a href="mailto:contact@ethstorage.io" target="_blank">Apply</a> a grant for support!
             </div>
           </div>
           <div class="web-context-right1">

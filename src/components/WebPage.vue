@@ -298,7 +298,7 @@ export default {
 <style lang="scss" scoped>
 #clients-embedded-viewer-area {
   position: relative;
-  width: 80%;
+  width: 75%;
   margin: 0 auto;
 }
 .dot {
@@ -439,7 +439,7 @@ export default {
 #clients-embedded-viewer {
   border: 0.6px solid #FFF;
   width: 100%;
-  height: 450px;
+  height: 490px;
   margin-top: 16px;
 }
 

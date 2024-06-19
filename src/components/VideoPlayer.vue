@@ -1,8 +1,10 @@
 <template>
   <div class="video-container">
+    <link rel="preload" href="@/assets/video.webm" crossorign="crossorign" as="video" type="media" fetchPriority="high"
+          importance="high"/>
     <img
         v-if="!videoLoaded"
-        :src="placeholderImage"
+        src="@/assets/video-replace.png"
         alt="Video Placeholder"
         class="placeholder"
     />
@@ -21,26 +23,17 @@
 
 <script>
 export default {
-  props: {
-    videoSrc: {
-      type: String,
-      required: true,
-    },
-    placeholderImage: {
-      type: String,
-      required: true,
-    },
-  },
   data() {
     return {
       videoLoaded: false,
+      videoSrc: require('@/assets/video.webm')
     };
   },
   methods: {
     onVideoLoaded() {
       this.videoLoaded = true;
-    },
-  },
+    }
+  }
 };
 </script>
 

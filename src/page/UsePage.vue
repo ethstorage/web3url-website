@@ -139,7 +139,7 @@ export default {
   }
 
   .use {
-    max-width: 95%;
+    max-width: 90%;
   }
 
   .use-title {

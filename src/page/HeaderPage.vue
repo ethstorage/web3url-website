@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="content-video">
-        <VideoPlayer :videoSrc="videoSrc" :placeholderImage="videoReplace" />
+        <VideoPlayer />
       </div>
     </div>
   </div>
@@ -39,12 +39,6 @@ export default {
   components: {
     HeaderComponent,
     VideoPlayer
-  },
-  data() {
-    return {
-      videoReplace: require('@/assets/video-replace.png'),
-      videoSrc: require('@/assets/video.webm')
-    };
   },
   methods: {
     goEthDenver() {
@@ -155,7 +149,7 @@ video {
   }
 
   .content {
-    width: 95%;
+    width: 90%;
   }
 
   .header-title {
