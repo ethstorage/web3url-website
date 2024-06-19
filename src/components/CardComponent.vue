@@ -27,7 +27,8 @@
 export default {
   data() {
     return {
-      shadowHeight: 0
+      shadowHeight: 0,
+      resizeObserver: null,
     };
   },
   props: {
@@ -57,12 +58,15 @@ export default {
     window.addEventListener('resize', this.updateTargetSize);
 
     this.resizeObserver = new ResizeObserver(this.updateTargetSize);
-    this.resizeObserver.observe(this.$refs.centerTitle);
+    if (this.$refs.centerTitle) {
+      this.resizeObserver.observe(this.$refs.centerTitle);
+    }
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.updateTargetSize);
-    if (this.resizeObserver)
-      this.resizeObserver.disconnect();
+    if (this.resizeObserver && this.$refs.centerTitle) {
+      this.resizeObserver.unobserve(this.$refs.centerTitle);
+    }
   },
   methods: {
     updateTargetSize() {
