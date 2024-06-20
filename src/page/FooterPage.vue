@@ -49,7 +49,7 @@ export default {
 
 <style>
 .footer-div {
-  background: #000 url("../assets/footer-right.png") no-repeat bottom 0 right 0;
+  background: #000 url("@/assets/footer-right.png") no-repeat bottom 0 right 0;
   background-size: 500px;
 }
 
