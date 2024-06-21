@@ -142,9 +142,10 @@ video {
 
   .header {
     transform: translateX(0);
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
     flex-direction: column;
+    align-items: center;
     gap: 0;
   }
 
