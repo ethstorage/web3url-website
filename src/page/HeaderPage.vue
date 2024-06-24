@@ -11,7 +11,7 @@
         </div>
 
         <div class="header-content">
-          Transforming Ethereum into the<br class="br-phone"> Unstoppable Decentralized Web Server.
+          Transforming Ethereum into the<br class="br-phone"> <span class="header-content2">Unstoppable Decentralized Web Server</span>.
         </div>
 
         <div class="header-list">
@@ -100,6 +100,9 @@ export default {
   line-height: 150%; /* 2.25rem */
   font-style: normal;
   font-family: SatoshiRegular;
+}
+.header-content2 {
+  font-family: Satoshi;
 }
 
 

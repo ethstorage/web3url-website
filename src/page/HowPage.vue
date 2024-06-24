@@ -11,11 +11,11 @@
               <div class="web-left-msg-item">
                 <div class="web-left-title2">Two types of gateways:</div>
                 <div class="web-left-msg">
-                  1. Multi-Blockchain Gateway: <span class="web-left-msg-btn" @click="onReadMore">w3link.io <img class="rt-go"
+                  1.&ensp;Multi-Blockchain Gateway: <span class="web-left-msg-btn" @click="onReadMore">w3link.io <img class="rt-go"
                                                                                         src="@/assets/arrow.svg"/></span>
                 </div>
                 <div class="web-left-msg">
-                  2.Ethereum-Only Gateway: <span class="web-left-msg-btn" @click="onW3link">w3eth.io <img class="rt-go"
+                  2. Ethereum-Only Gateway: <span class="web-left-msg-btn" @click="onW3link">w3eth.io <img class="rt-go"
                                                                                  src="@/assets/arrow.svg"/></span>
                 </div>
               </div>
@@ -53,17 +53,17 @@
               <div class="web-right-item">
                 <div class="web-right-title">Gateway</div>
                 <div class="web-context-layout web-context-layout-margin1">
-                  <img class="web-right-img" alt="" src="@/assets/other.svg"/>
+                  <img class="web-right-img" alt="" src="@/assets/other.png"/>
                   <div class="web-right-msg">
                     w3link.io<br class="br-phone"/>+w3eth.io
                   </div>
                 </div>
                 <div class="web-context-layout web-context-layout-margin">
-                  <img class="web-right-img" alt="" src="@/assets/other.svg"/>
+                  <img class="web-right-img" alt="" src="@/assets/other.png"/>
                   <div class="web-right-msg">w3link.io</div>
                 </div>
                 <div class="web-context-layout web-context-layout-margin">
-                  <img class="web-right-img" alt="" src="@/assets/other.svg"/>
+                  <img class="web-right-img" alt="" src="@/assets/other.png"/>
                   <div class="web-right-msg">w3link.io</div>
                 </div>
               </div>

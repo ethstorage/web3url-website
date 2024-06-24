@@ -13,13 +13,6 @@
 }
 
 @font-face {
-    font-family: SatoshiBold;
-    src: url("./Satoshi-Black.ttf");
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: Inter;
     src: url("./Inter-Medium.woff");
     font-weight: normal;

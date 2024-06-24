@@ -9,7 +9,7 @@
           <span class="web-context-message">Trustless decentralized names can be issued as tokens on the blockchain. Registration is done through smart contracts, and name ownership is secured by the blockchain.</span>
 
           <span class="web-context-title">On-Chain/L2 Storage</span>
-          <span class="web-context-message">Web contents are stored in permissionless storage network consisting of multiple nodes around the world. It provides greater security, low cost and resistance to censorship.</span>
+          <span class="web-context-message">Web contents are stored in permissionless storage network consisting of multiple nodes around the world. It provides greater availability, low cost and resistance to censorship.</span>
 
           <span class="web-context-title">Dynamic Composition</span>
           <span class="web-context-message">Web contents can be accessed and composited by smart contracts. It opens many unexplored areas like on-chain dynamic website rendering, wearable NFT, etc.</span>
