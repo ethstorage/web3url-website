@@ -102,7 +102,7 @@ export default {
   font-family: SatoshiRegular;
 }
 .header-content2 {
-  font-family: Satoshi;
+  font-weight: 900;
 }
 
 
