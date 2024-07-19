@@ -115,6 +115,7 @@ export default {
   methods: {
     openFrame() {
       this.isOpenFrame = true;
+      this.$refs.inputEdit.close();
     },
     querySearch(queryString, cb) {
       cb(this.web3UrlExamples);
