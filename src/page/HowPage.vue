@@ -24,7 +24,7 @@
                 <div class="web3-to-http-layout">
                   <div class="web-left-link">web3://vitalikblog.eth</div>
                   <img class="web-link-arrow" src="@/assets/down-arrow.svg"/>
-                  <div class="web-left-link">https://vitalik.eth.eth.w3link.io/</div>
+                  <div class="web-left-link">https://vitalikblog.eth.eth.w3link.io/</div>
                 </div>
               </div>
             </div>
