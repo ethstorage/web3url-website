@@ -155,6 +155,14 @@ export default {
   },
   created() {
     this.chainList = getDefaultChainList()
+    const L2Chain = {
+      id: 43069,
+      name: 'QuarkChain L2 Testnet',
+      shortName: 'esl2-t',
+      rpcUrls: ['https://rpc.testnet.l2.quarkchain.io:8545'],
+      contracts: [],
+    }
+    this.chainList.push(L2Chain)
     this.web3Client = new Client(this.chainList)
   },
   mounted() {
