@@ -155,14 +155,22 @@ export default {
   },
   created() {
     this.chainList = getDefaultChainList()
-    const L2Chain = {
+    const QKCL2Chain = {
       id: 43069,
       name: 'QuarkChain L2 Testnet',
-      shortName: 'esl2-t',
+      shortName: 'wsc-t',
       rpcUrls: ['https://rpc.testnet.l2.quarkchain.io:8545'],
       contracts: [],
     }
-    this.chainList.push(L2Chain)
+    this.chainList.push(QKCL2Chain)
+    const ESL2Chain = {
+      id: 3336,
+      name: 'EthStorage L2 Testnet',
+      shortName: 'esl2-t',
+      rpcUrls: ['https://rpc.testnet.l2.ethstorage.io:9540'],
+      contracts: [],
+    }
+    this.chainList.push(ESL2Chain)
     this.web3Client = new Client(this.chainList)
   },
   mounted() {
