@@ -171,6 +171,22 @@ export default {
       contracts: [],
     }
     this.chainList.push(ESL2Chain)
+    const QKCL2BeatChain = {
+      id: 3335,
+      name: 'QuarkChain L2 Testnet',
+      shortName: 'wsc-d',
+      rpcUrls: ['https://rpc.beta.testnet.l2.quarkchain.io:8545'],
+      contracts: [],
+    }
+    this.chainList.push(QKCL2BeatChain)
+    const ESL2BeatChain = {
+      id: 3337,
+      name: 'EthStorage L2 Testnet',
+      shortName: 'es-d',
+      rpcUrls: ['https://rpc.beta.testnet.l2.ethstorage.io:9596'],
+      contracts: [],
+    }
+    this.chainList.push(ESL2BeatChain)
     this.web3Client = new Client(this.chainList)
   },
   mounted() {
