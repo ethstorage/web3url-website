@@ -390,9 +390,10 @@ export default {
     font-size: 12px;
   }
 
-  .inline-input >>> .el-input__inner {
-    padding-left: 28px;
-    padding-right: 80px;
+	:deep(.inline-input .el-input__wrapper) {
+		height: 42px;
+	}
+	:deep(.inline-input .el-input__inner) {
     height: 42px;
     font-size: 12px;
   }

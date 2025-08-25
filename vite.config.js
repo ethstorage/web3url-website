@@ -20,4 +20,15 @@ export default defineConfig({
     exclude: ['brotli-wasm'],
     include: ['web3protocol'],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
+        }
+      }
+    }
+  }
 })
