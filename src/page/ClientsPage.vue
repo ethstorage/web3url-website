@@ -8,26 +8,26 @@
             ref="inputEdit" placeholder="web3://..."
             class="inline-input" popper-class="popper-input"
             v-model="web3Url"
-            :fetch-suggestions="this.querySearch"
+            :fetch-suggestions="querySearch"
             :popper-append-to-body="false"
             @keyup.native="onKeyUp"
             @blur="onBlur"
             @focus="onFocus"
             @input="handleInput"
             @select="openFrame">
-          <template slot="prefix">
+          <template #prefix>
             <div class="select-icon" :class="{'selectOpen':selectOpen}" @click="onClick">
-              <i class="el-icon-arrow-down"></i>
+							<el-icon><ArrowDown /></el-icon>
             </div>
           </template>
 
-          <template slot="suffix">
+          <template #suffix>
             <div class="web3-go-to" @click.stop="openFrame">
               <GoIcon/>
             </div>
           </template>
 
-          <template slot-scope="{ item }">
+          <template v-slot="{ item }">
             <span class="web3-option-item">
               <span class="web3-option-name">{{ item.title }}</span>
               <span class="web3-option-right">{{ item.value }}</span>
@@ -42,15 +42,16 @@
       </div>
 
       <b-modal width="100%" v-model="isOpenFrame" :can-cancel="false">
-        <WebPage :web3Url="web3Url"/>
+        <WebPage :web3Url="web3Url" @close-modal="isOpenFrame = false"/>
       </b-modal>
     </div>
   </div>
 </template>
 
 <script>
-import WebPage from "@/components/WebPage";
-import GoIcon from "@/components/GoIcon";
+import WebPage from "@/components/WebPage.vue";
+import GoIcon from "@/components/GoIcon.vue";
+import { ArrowDown } from '@element-plus/icons-vue'
 
 export default {
   name: "ClientsPage",
@@ -110,7 +111,8 @@ export default {
   },
   components: {
     WebPage,
-    GoIcon
+    GoIcon,
+		ArrowDown
   },
   methods: {
     openFrame() {
@@ -293,7 +295,7 @@ export default {
   width: 100%;
 }
 .select-icon{
-  width: 45px;
+  width: 40px;
   height: 70px;
   display: flex;
   align-items: center;
@@ -307,13 +309,17 @@ export default {
   transform: rotate(180deg);
 }
 
-.inline-input >>> .el-input__inner {
-  padding-left: 50px;
-  padding-right: 130px;
+:deep(.inline-input .el-input__wrapper) {
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+:deep(.inline-input .el-input__wrapper.is-focus) {
+	box-shadow: none !important;
+}
+:deep(.inline-input .el-input__inner) {
   width: 100%;
   height: 70px;
-  border: 0;
-  background: transparent;
   text-align: left;
   color: #FFF;
   font-size: 20px;

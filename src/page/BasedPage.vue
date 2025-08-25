@@ -52,14 +52,14 @@
     </div>
 
     <b-modal width="100%" v-model="isOpenFrame" :can-cancel="false">
-      <WebPage :web3Url="web3Url"/>
+      <WebPage :web3Url="web3Url" @close-modal="isOpenFrame = false"/>
     </b-modal>
   </div>
 </template>
 
 <script>
-import CardComponent from "../components/CardComponent";
-import WebPage from "@/components/WebPage";
+import CardComponent from "@/components/CardComponent.vue";
+import WebPage from "@/components/WebPage.vue";
 
 export default {
   name: "BasedPage",

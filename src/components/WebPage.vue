@@ -98,7 +98,7 @@
                   <div>
                     <span class="infos-value-subtitle">Args: </span>
                     <span v-for="argValue in parsedWeb3Url.parsedPath.methodArgValues" :key="argValue">
-                      {{ argValue }}
+                      {{ argValue }}&nbsp;
                     </span>
                   </div>
                 </div>
@@ -130,7 +130,6 @@ export default {
   data() {
     return {
       chainList: {},
-      web3Client: null,
 
       // Incremental parsing of the web3 URL by web3protocol-js is stored here.
       parsedWeb3Url: {},
@@ -153,6 +152,7 @@ export default {
       default: 'web3://vitalikblog.eth'
     }
   },
+	emits: ['close-modal'],
   created() {
     this.chainList = getDefaultChainList()
     const QKCL2Chain = {
@@ -200,7 +200,7 @@ export default {
      */
     async loadWeb3UrlInViewer() {
       // Reinitialize the parsed web3 url
-      this.$set(this, 'parsedWeb3Url', {});
+			this.parsedWeb3Url  = {};
       // Reinitialize the viewer
       this.setSrc("");
 
@@ -209,7 +209,7 @@ export default {
         // Step 1.1 : Extract parts of the URL, determine if a chain id was provided.
         let chainId
         ({urlMainParts, chainId} = this.web3Client.parseUrlBasic(this.web3Url))
-        this.$set(this.parsedWeb3Url, 'chainId', chainId);
+				this.parsedWeb3Url.chainId = chainId;
       } catch (err) {
         this.onAlert("web3curl: Basic parsing","Error: " + err.message);
         return;
@@ -222,9 +222,9 @@ export default {
           chainId: updatedChainId,
           nameResolution
         } = await this.web3Client.determineTargetContractAddress(urlMainParts.hostname, this.parsedWeb3Url.chainId)
-        this.$set(this.parsedWeb3Url, 'contractAddress', contractAddress);
-        this.$set(this.parsedWeb3Url, 'chainId', updatedChainId);
-        this.$set(this.parsedWeb3Url, 'nameResolution', nameResolution);
+				this.parsedWeb3Url.contractAddress = contractAddress;
+				this.parsedWeb3Url.chainId = updatedChainId;
+				this.parsedWeb3Url.nameResolution = nameResolution;
 
       } catch (err) {
         this.onAlert("web3curl: Hostname resolution","Error: " + err.message)
@@ -234,9 +234,9 @@ export default {
       try {
         // Step 1.3 : Determine the web3 mode.
         const resolveModeDeterminationResult = await this.web3Client.determineResolveMode(this.parsedWeb3Url.contractAddress, this.parsedWeb3Url.chainId)
-        this.$set(this.parsedWeb3Url, 'mode', resolveModeDeterminationResult.mode);
-        this.$set(this.parsedWeb3Url, 'modeDeterminationCalldata', resolveModeDeterminationResult.calldata);
-        this.$set(this.parsedWeb3Url, 'modeDeterminationReturn', resolveModeDeterminationResult.return);
+				this.parsedWeb3Url.mode = resolveModeDeterminationResult.mode;
+				this.parsedWeb3Url.modeDeterminationCalldata = resolveModeDeterminationResult.calldata;
+				this.parsedWeb3Url.modeDeterminationReturn = resolveModeDeterminationResult.return;
       } catch (err) {
         this.onAlert("web3curl: Resolve mode determination","Error: " + err.message)
         return;
@@ -244,8 +244,7 @@ export default {
 
       try {
         // Step 1.4 : Parse the path part of the URL, given the web3 resolve mode.
-        let parsedPath = await this.web3Client.parsePathForResolveMode(urlMainParts.path, this.parsedWeb3Url.mode, this.parsedWeb3Url.chainId)
-        this.$set(this.parsedWeb3Url, 'parsedPath', parsedPath);
+				this.parsedWeb3Url.parsedPath = await this.web3Client.parsePathForResolveMode(urlMainParts.path, this.parsedWeb3Url.mode, this.parsedWeb3Url.chainId);
       } catch (err) {
         this.onAlert("web3curl: Path parsing", "Error: " + err.message)
         return;
@@ -321,7 +320,7 @@ export default {
       this.onCancel();
     },
     onCancel() {
-      this.$parent.close();
+			this.$emit('close-modal');
     }
   }
 };

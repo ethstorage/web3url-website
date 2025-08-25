@@ -1,21 +1,21 @@
 <template>
   <div class="rectangleParent">
-    <div class="frameChild" :style="{ height: shadowHeight + 'px', backgroundColor: this.shadowColor}">
+    <div class="frameChild" :style="{ height: shadowHeight + 'px', backgroundColor: shadowColor}">
       <img class="frameItem" alt="" src="@/assets/shadow.png"/>
     </div>
-    <div ref="sourceDiv" class="frameInner" :style="{ backgroundColor: this.bgColor}">
+    <div ref="sourceDiv" class="frameInner" :style="{ backgroundColor: bgColor}">
       <slot></slot>
     </div>
-    <div v-if="this.showTitle" ref="centerDiv" class="rectangleGroup">
+    <div v-if="showTitle" ref="centerDiv" class="rectangleGroup">
       <div class="rectangleDiv">
         <div class="web3AccessibleMainnetRes">
-          {{ this.title }}
+          {{ title }}
           <slot name="title"></slot>
         </div>
       </div>
-      <div ref="centerTitle" class="web3AccessibleMainnetResWrapper" :style="{ backgroundColor: this.titleBgColor}">
+      <div ref="centerTitle" class="web3AccessibleMainnetResWrapper" :style="{ backgroundColor: titleBgColor}">
         <div class="web3AccessibleMainnetRes">
-          {{ this.title }}
+          {{ title }}
           <slot name="title"></slot>
         </div>
       </div>

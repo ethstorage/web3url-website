@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import HeaderComponent from '../components/HeaderComponent.vue';
-import VideoPlayer from '../components/VideoPlayer.vue';
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import VideoPlayer from '@/components/VideoPlayer.vue';
 
 export default {
   name: "HeaderPage",

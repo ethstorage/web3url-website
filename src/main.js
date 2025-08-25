@@ -1,20 +1,25 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
-import Buefy from 'buefy';
-import ElementUI from 'element-ui';
-import router from './router'
+import router from './router/index.js';
 
-import './assets/main.css'
+// Vue 3 Buefy
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+
+// Element Plus
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
+
+import './assets/main.css';
 import './assets/font/font.css';
-import 'element-ui/lib/theme-chalk/index.css';
-import 'buefy/dist/buefy.css';
 import 'spinkit/spinkit.min.css';
 
-Vue.use(ElementUI);
-Vue.use(Buefy);
+import 'spinkit/spinkit.min.css';
 
-Vue.config.productionTip = false;
-new Vue({
-    router,
-    render: h => h(App)
-}).$mount('#app');
+const app = createApp(App);
+
+app.use(router);
+app.use(ElementPlus);
+app.use(Buefy);
+
+app.mount('#app');

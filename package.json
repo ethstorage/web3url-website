@@ -2,50 +2,30 @@
   "name": "web3-url",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "buefy": "^0.9.29",
-    "element-ui": "^2.15.14",
+    "@element-plus/icons-vue": "^2.3.2",
+    "buefy": "^3.0.1",
+    "element-plus": "^2.10.7",
     "spinkit": "^2.0.1",
-    "vue": "^2.7.16",
-    "vue-router": "^3.6.5",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1",
     "web3protocol": "^0.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^5.0.9",
-    "@vue/cli-service": "^5.0.9",
-    "eslint": "^7.5.0",
-    "eslint-plugin-vue": "^9.26.0",
+    "@rollup/plugin-wasm": "^6.2.2",
+    "@vitejs/plugin-vue": "^6.0.1",
     "sass": "^1.90.0",
-    "sass-loader": "^16.0.5",
-    "vue-template-compiler": "^2.6.11",
-    "webpack": "^5.92.1"
-  },
-  "resolutions": {
-    "ws": "^8.18.3",
-    "@babel/traverse": "^7.23.2"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "vite": "^7.0.6",
+    "vite-plugin-vue-devtools": "^8.0.0",
+    "vite-plugin-wasm": "^3.5.0"
+  }
 }
