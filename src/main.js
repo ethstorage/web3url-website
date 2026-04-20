@@ -4,7 +4,7 @@ import router from './router/index.js';
 
 // Vue 3 Buefy
 import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
+import 'buefy/dist/css/buefy.css'
 
 // Element Plus
 import ElementPlus from 'element-plus';
