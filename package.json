@@ -14,7 +14,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
     "buefy": "^3.0.1",
-    "element-plus": "^2.10.7",
+    "element-plus": "^2.13.5",
     "spinkit": "^2.0.1",
     "vue": "^3.5.18",
     "vue-router": "^4.5.1",
@@ -26,5 +26,12 @@
     "vite": "^7.3.2",
     "vite-plugin-vue-devtools": "^8.0.0",
     "vite-plugin-wasm": "^3.5.0"
+  },
+  "resolutions": {
+    "ws": "^8.17.1",
+    "picomatch": "^4.0.4",
+    "braces": "^3.0.3",
+    "semver": "^7.6.3",
+    "micromatch": "^4.0.8"
   }
 }
