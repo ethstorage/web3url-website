@@ -14,8 +14,6 @@ import './assets/main.css';
 import './assets/font/font.css';
 import 'spinkit/spinkit.min.css';
 
-import 'spinkit/spinkit.min.css';
-
 const app = createApp(App);
 
 app.use(router);
